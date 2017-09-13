@@ -5,16 +5,16 @@ export const ADD_POST = 'ADD_POST'
 export const DELETE_POST = 'DELETE_POST'
 export const UPDATE_POST = 'UPDATE_POST'
 
- 
+
 export function getPosts() {
   return function(dispatch){
-    console.log('dispatch,',dispatch)
     return API.getPosts()
       .then(posts=>dispatch(receivePosts(posts)))
   }
 }
 
 export function receivePosts(posts){
+  console.log(posts);
   return {
     type: RECEIVE_POSTS,
     posts

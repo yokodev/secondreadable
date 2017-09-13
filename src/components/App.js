@@ -5,11 +5,10 @@ import { getPosts } from '../actions'
 
 class App extends Component {
   componentDidMount(){
-    console.log('paso...')
-    getPosts()
+    this.props.boundGetPosts()
   }
   render() {
-    console.log('PROPS: ',this.props);
+    // console.log('PROPS: ',this.props);
     return (
       <div className="App">
         <div className="App-header">
@@ -21,10 +20,14 @@ class App extends Component {
 }
 
 function mapStateToProps(state){
+  // console.log('state',state)
   return {
-    entities: state.entities,
-    posts: state.entities.posts,
+    posts: state.posts,
   }
 }
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => ({
+  boundGetPosts: () => dispatch(getPosts())
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);

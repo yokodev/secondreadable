@@ -2,21 +2,25 @@ import  * as Action  from '../actions'
 import  mapkeys from 'lodash.mapkeys'
 
 const initialState = {
-  entities:{
     categories:{ byId:{}, allIds:[]},
     posts:{ byId:{}, allIds:[] },
     comments:{ byId:{}, allIds:[] },
-    categoryPostComment:{ byId:{ }, allIds:[] }
-  },
-  ui:{}
+    ui:{}
+}
+
+function createNewPosts(newPosts){
+  let byId={}, allIds=[]
+  byId = mapkeys(newPosts,'id')
+  allIds = Object.keys(byId)
+  return {
+    posts:{ byId, allIds }
+  }
 }
 
 function readable(state = initialState, action ){
   switch (action.type) {
-    case Action.GET_POSTS:
-      let newPosts = mapkeys(action.posts,'id')
-      return {...state.entities.posts.byId, ...newPosts}
-
+    case Action.RECEIVE_POSTS:
+      return {...state,  ...createNewPosts(action.posts)}
     default:
       return state
   }

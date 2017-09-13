@@ -1,9 +1,23 @@
-export const url = 'http://localhost:3001'
-export const headers = { headers: { Authorization: 'micodigo123' } }
+const url = 'http://localhost:3001'
+const headers = { headers: { 'Authorization': 'whatever-you-wan1' }}
+// const headers = new Headers()
+// headers.append("Authorization","micodigo123")
+// headers.append("Content-Type", "application/json");
 
-
-
-export const getPosts = () => {
-  fetch(`${url}/posts`, headers)
+function status(response) {
+  if (response.status >= 200 && response.status < 300) {
+    return Promise.resolve(response)
+  } else {
+    return Promise.reject(new Error(response.statusText))
+  }
 }
 
+function json(response) {
+  return response.json()
+}
+
+
+export const getPosts = () =>
+  fetch(`${url}/posts`, headers)
+    .then(status)
+    .then(json)
