@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import './App.css';
+import { getPosts } from '../actions'
 
 class App extends Component {
   componentDidMount(){
+    console.log('paso...')
+    getPosts()
   }
   render() {
     console.log('PROPS: ',this.props);

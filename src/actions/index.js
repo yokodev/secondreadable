@@ -1,12 +1,22 @@
+import * as API from '../service/'
 export const GET_POSTS = 'GET_POSTS'
+export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const ADD_POST = 'ADD_POST'
 export const DELETE_POST = 'DELETE_POST'
 export const UPDATE_POST = 'UPDATE_POST'
 
+ 
+export function getPosts() {
+  return function(dispatch){
+    console.log('dispatch,',dispatch)
+    return API.getPosts()
+      .then(posts=>dispatch(receivePosts(posts)))
+  }
+}
 
-export function getPosts(posts){
-  return{
-    type:GET_POSTS,
+export function receivePosts(posts){
+  return {
+    type: RECEIVE_POSTS,
     posts
   }
 }
