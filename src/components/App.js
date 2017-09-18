@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import './App.css';
-import { getPosts } from '../actions'
+import { getPosts, getCategories } from '../actions'
 
 class App extends Component {
   componentDidMount(){
-    this.props.boundGetPosts()
+    this.props.getPosts()
+    this.props.getCategories()
   }
   render() {
     // console.log('PROPS: ',this.props);
@@ -19,15 +20,18 @@ class App extends Component {
   }
 }
 
-function mapStateToProps(state){
+function mapStateToProps({categories={},posts={}, comments={}}){
   // console.log('state',state)
   return {
-    posts: state.posts,
+    categories,
+    posts,
+    comments
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  boundGetPosts: () => dispatch(getPosts())
+  getPosts: () => dispatch(getPosts()),
+  getCategories: () => dispatch(getCategories())
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(App);
