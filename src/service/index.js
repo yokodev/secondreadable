@@ -17,17 +17,20 @@ function json(response) {
   return response.json()
 }
 
-export const getPosts = () =>
-  fetch(`${url}/posts`, headers)
+export const getPosts = categories => {
+  let urlPosts = categories ? `${url}/${categories}/posts` : `${url}/posts`
+  return fetch(urlPosts, headers)
     .then(status)
     .then(json)
-    
+}
+
+
 export const getCategories = () =>
   fetch(`${url}/categories`, headers)
     .then(status)
     .then(json)
-    
-export const getComments = () =>
+
+export const getCommentsById = (postID) =>
   fetch(`${url}/comments`, headers)
     .then(status)
     .then(json)

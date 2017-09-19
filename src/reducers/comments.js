@@ -10,7 +10,7 @@ function createNewComments(newComments){
 
 function comments(state = {}, action ){
   switch (action.type) {
-    case Action.RECEIVE_POSTS:
+    case Action.RECEIVE_COMMENTS:
       return { ...state, ...createNewComments(action.comments) }
     default:
       return state
