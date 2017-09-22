@@ -15,7 +15,7 @@ export function getPosts() {
 }
 
 export function receivePosts(posts){
-  console.log(posts);
+  // console.log(posts);
   return {
     type: RECEIVE_POSTS,
     posts

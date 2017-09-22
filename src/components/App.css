@@ -4,13 +4,12 @@
 
 .wrapper{
   width: 100%;
-  /*max-width: 960px;
-  margin: 0 auto;*/
+  max-width: 1280px;
+  margin: 0 auto;
   display: grid;
   grid-row-gap: 10px;
   grid-template-areas:
   "header"
-  "sidebar"
   "content"
   "footer"
 
@@ -18,7 +17,7 @@
 .mainheader {
   background-color: #222;
   color: white;
-  height: 150px;
+  height: 100px;
   padding: 20px;
   grid-area: header;
 
@@ -39,6 +38,7 @@
   grid-area: footer;
   background-color: #736877;
   color: white;
+  margin: 0 auto;
 
 }
 @media (min-width: 550px) {
@@ -46,11 +46,11 @@
    .wrapper {
      grid-column-gap: 1em;
      grid-row-gap: 20px;
-     grid-template-columns: 0.75fr 4fr;
+     grid-template-columns: 16fr;
      grid-template-areas:
-       "header  header"
-       "sidebar content"
-       "footer footer"
+       "header  "
+       "content"
+       "footer "
    }
 
 
