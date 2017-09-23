@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import * as Util from '../utils'
 import { Item,Label, Header, Button, Icon, Card, Feed,Dropdown,  Menu, Segment } from 'semantic-ui-react'
 import Rater from './Rater'
+import image from '../assets/images/image.png'
 
 export default class SinglePost extends Component {
 
@@ -9,10 +10,10 @@ export default class SinglePost extends Component {
 
     const {id, title, timestamp, author, category, voteScore } = this.props.post
     return (
-      <Segment >
-          <Item>
-            {/* <Item.Image size="small" src="/assets/images/wireframe/image.png" /> */}
+      // <Segment >
+          <Item >
             <Rater voteScore={voteScore}/>
+            <Item.Image size="small" src={image} />
             <Item.Content verticalAlign='bottom'>
               <Item.Header as="a">{title}</Item.Header>
               <Item.Description>{`Submitted ${Util.timeSince(timestamp) } by ${author}`}</Item.Description>
@@ -22,7 +23,7 @@ export default class SinglePost extends Component {
               <Item.Extra content="121 comments" />
             </Item.Content>
           </Item>
-      </Segment>
+      // </Segment>
 
     )
   }

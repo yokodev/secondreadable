@@ -3,16 +3,14 @@
 }
 
 .wrapper{
-  width: 100%;
-  max-width: 1280px;
+  /*width: 100%;*/
+  max-width: 1000px;
   margin: 0 auto;
   display: grid;
   grid-row-gap: 10px;
   grid-template-areas:
   "header"
   "content"
-  "footer"
-
 }
 .mainheader {
   background-color: #222;
@@ -32,17 +30,9 @@
   grid-area: sidebar;
   background-color: #67b4c8;
   color: white;
-
 }
-.footer{
-  grid-area: footer;
-  background-color: #736877;
-  color: white;
-  margin: 0 auto;
 
-}
 @media (min-width: 550px) {
-
    .wrapper {
      grid-column-gap: 1em;
      grid-row-gap: 20px;
@@ -52,6 +42,11 @@
        "content"
        "footer "
    }
+}
 
+.raterwrapper{
+
+}
+.rater{
 
 }

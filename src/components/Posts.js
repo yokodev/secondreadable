@@ -31,9 +31,9 @@ export default class Posts extends Component {
         </Dropdown.Menu>
       </Dropdown>
     </Menu>
-    <Segment attached='bottom'>
-      {posts.map(post=> <SinglePost post={post}/>)}
-    </Segment>
+    {/* <Segment attached='bottom'> */}
+      {posts.map(post=> <SinglePost key={post.id} post={post}/>)}
+    {/* </Segment> */}
   </div>
 
     )
