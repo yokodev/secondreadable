@@ -1,0 +1,76 @@
+.mainheader {
+  background-image: url('../assets/images/blue-water-header.jpg');
+  /*background-image: url('../assets/images/black-punctured-metal-plate-header.jpg');*/
+  /*background-image: url('../assets/images/dark-bee-house-perforated-metal-sheet-header.jpg');*/
+  /*background-image: url('../assets/images/header-blue.png');*/
+  background-size: cover;
+  /*z-index: 10;*/
+  background-repeat: round;
+  color: white;
+  height: 150px;
+  /*padding: 20px;*/
+  grid-area: header;
+  display: grid;
+  grid-template-columns: 20px 55px 1fr 1fr;
+  grid-template-rows: 70px 1fr;
+  grid-template-areas: ". . . ."
+                      ". image title menu";
+  grid-column-gap: 5px;
+
+}
+
+.header-image{
+  grid-area: image;
+  align-self: center;
+}
+.header-title{
+  /*background-color: red;*/
+  grid-area: title;
+  height: auto;
+  width: auto;
+  align-self: center;
+}
+.header-title a:link,a:visited{
+  font-size: 40px;
+  margin-left: 10px;
+  /*text-decoration: none;*/
+  color: white;
+}
+.header-title a:hover, a:active {
+    /*background-color: red;*/
+    color: white;
+}
+
+
+/*.header-menu div.ui.pointing.secondary.menu{*/
+.header-menu {
+  grid-area: menu;
+  height: 50px;
+  align-self: end;
+  justify-self:end;
+}
+.header-menu-item {
+  padding: 12px 16px;
+  text-transform: capitalize;
+  font-weight: 400;
+  /*color: white;*/
+}
+ .header-menu-item-active {
+   /*color: white;
+   font-weight: bolder;*/
+   border-bottom-style: solid;
+   border-bottom-color: white;
+
+ }
+.header-menu-item:hover{
+  color: white;
+  font-weight: bolder;
+
+}
+
+/*div.ui.pointing.secondary.header-menu.menu{
+  color: white;
+}*/
+
+/*.header-menu div.ui.pointing.secondary.menu{
+}*/

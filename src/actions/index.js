@@ -22,9 +22,9 @@ export function receivePosts(posts){
   }
 }
 
-export function getPostsBy(categories) {
+export function getPostsByCat(thisCategory) {
   return function(dispatch){
-    return API.getPosts(categories)
+    return API.getPostsByCategory(thisCategory)
       .then(posts=>dispatch(receivePosts(posts)))
   }
 }

@@ -1,9 +1,6 @@
 // import axios from 'axios'
 const url = 'http://localhost:3001'
 const headers = { headers: { 'Authorization': 'whatever-you-wan1' }}
-// const headers = new Headers()
-// headers.append("Authorization","micodigo123")
-// headers.append("Content-Type", "application/json");
 
 function status(response) {
   if (response.status >= 200 && response.status < 300) {
@@ -32,5 +29,10 @@ export const getCategories = () =>
 
 export const getCommentsById = (postID) =>
   fetch(`${url}/comments`, headers)
+    .then(status)
+    .then(json)
+
+export const getPostsByCategory = category =>
+  fetch(`${url}/${category}/posts`, headers)
     .then(status)
     .then(json)

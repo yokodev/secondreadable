@@ -1,6 +1,5 @@
 import moment from 'moment'
-
-
+import sortBy from 'sort-by'
 /*
 ************************************
 Unix Timestamp (milliseconds) 1.0.0+
@@ -10,8 +9,6 @@ moment(Number);
 Similar to new Date(Number), you can create a moment by passing an integer value representing the number of milliseconds since the Unix Epoch (Jan 1 1970 12AM UTC).
 
 var day = moment(1318781876406);
-
-
 *******************************
 Unix Timestamp (seconds) 1.6.0+
 
@@ -23,10 +20,8 @@ var day = moment.unix(1318781876);
 This is implemented as moment(timestamp * 1000), so partial seconds in the input timestamp are included.
 
 var day = moment.unix(1318781876.721);
-
-
-
 */
+
 export const timeSince = unixTimeStamp =>{
   let iniTime = moment(unixTimeStamp)
   return iniTime.fromNow()
@@ -41,45 +36,18 @@ export const tFromUTS = unixTimeStamp => {
 
 export const arrayFromObject = (objectToConvert, idsArray) => {
   let result = []
-  objectToConvert ? (result = idsArray.map(itemID => objectToConvert[itemID])) : (result = [])
+  objectToConvert ? result = idsArray.map(itemID => objectToConvert[itemID]) : result = []
   return result
 }
 
+export const sortedBy = ( posts=[], sortItemsBy) =>{
+  const defaultOrder = 'voteScore';
+  let postToShow = []
+  sortItemsBy && posts.length>0 ? postToShow = posts.sort(sortBy(sortItemsBy)) : postToShow = posts
+  return postToShow;
+}
 
-/**
- *
- * <Table sortable celled fixed selectable>
-   <Table.Header>
-     <Table.Row>
-      //  {/* <Table.HeaderCell sorted={column === 'name' ? direction : null} onClick={this.handleSort('name')}> */
- //       <Table.HeaderCell>Post</Table.HeaderCell>
- //       <Table.HeaderCell>category</Table.HeaderCell>
- //       <Table.HeaderCell>Time</Table.HeaderCell>
- //       {/* <Table.HeaderCell sorted={column === 'votescore' ? direction : null} onClick={this.handleSort('votescore')}> */}
- //       <Table.HeaderCell >
- //         voteScore
- //       </Table.HeaderCell>
- //     </Table.Row>
- //   </Table.Header>
- //   <Table.Body>
- //     {posts.map(({ id, category, timestamp, title, voteScore }) => (
- //       <Table.Row key={id}>
- //         <Table.Cell>{title}</Table.Cell>
- //         <Table.Cell>{category}</Table.Cell>
- //         <Table.Cell>{Util.timeSince(timestamp)}</Table.Cell>
- //         <Table.Cell><Header as="h3" textAlign="center">{voteScore}</Header></Table.Cell>
- //       </Table.Row>
- //     ))}
- //   </Table.Body>
- //   <Table.Footer fullWidth>
- //     <Table.Row>
- //       <Table.HeaderCell colSpan="4">
- //         <Button floated="right" icon labelPosition="left" primary size="small">
- //           <Icon name="user" /> Add Post
- //         </Button>
- //       </Table.HeaderCell>
- //     </Table.Row>
- //   </Table.Footer>
- // </Table>
- // *
- // * */
+export const itemsSortedBy = (objectToConvert, idsArray,sortItemsBy) =>{
+  return sortedBy(arrayFromObject(objectToConvert,idsArray),sortItemsBy)
+}
+// export function itemsSortedBy(objectToConvert, idsArray){

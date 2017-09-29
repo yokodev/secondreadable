@@ -1,58 +1,33 @@
 import React, { Component } from 'react'
 import * as Util from '../utils'
-import { Item,Label, Header, Button, Icon, Card, Feed,Dropdown,  Menu, Segment } from 'semantic-ui-react'
+import { Segment, Image } from 'semantic-ui-react'
 import Rater from './Rater'
-import image from '../assets/images/image.png'
+import image from '../assets/images/snoo-head.jpg'
+import { Link } from 'react-router-dom'
 
 export default class SinglePost extends Component {
-
   render() {
-
-    const {id, title, timestamp, author, category, voteScore } = this.props.post
+    const { title, timestamp, author, voteScore } = this.props.post
     return (
-      // <Segment >
-          <Item >
-            <Rater voteScore={voteScore}/>
-            <Item.Image size="small" src={image} />
-            <Item.Content verticalAlign='bottom'>
-              <Item.Header as="a">{title}</Item.Header>
-              <Item.Description>{`Submitted ${Util.timeSince(timestamp) } by ${author}`}</Item.Description>
-              <Item.Extra>
-                <Icon color="green" name="check" /> {voteScore}
-              </Item.Extra>
-              <Item.Extra content="121 comments" />
-            </Item.Content>
-          </Item>
-      // </Segment>
-
+      <Segment>
+        <div className="post">
+          <div className="post-rater">
+            <Rater voteScore={voteScore} />
+          </div>
+          <div className="post-image">
+            <Image src={image} size="tiny" />
+          </div>
+          <div className="post-content">
+            <p>
+              <Link className="post-title" to="">
+                {title}
+              </Link>
+            </p>
+            <p className="post-submitted">{`submitted ${Util.timeSince(timestamp)} by ${author}`}</p>
+            <p className="post-comments">{`805 comments `}</p>
+          </div>
+        </div>
+      </Segment>
     )
   }
 }
-
-{/* <Item.Extra>
-   <Button.Group  vertical icon>
-      <Button>
-        <Icon name='play' />
-      </Button>
-
-      <Button>
-        <Icon  color="green" name='pause' />
-      </Button>
-    </Button.Group>
-</Item.Extra> */}
-
-{/* <div>
-  <Button label={1048} icon="thumbs outline up" labelPosition="left" />
-  <Button label="1,048" icon="thumbs outline down" labelPosition="left" />
-  <Button label={{ content: '2,048' }} icon="heart" content="Like" labelPosition="left" />
-
-</div> */}
-
-{/* <div class="top-matter">
-  <p class="title">
-    <a> {title}</a>
-  </p>
-  <p class="tagline ">
-    {`submitted ${Util.timeSince(timestamp)} by ${author}`}
-  </p>
-</div> */}

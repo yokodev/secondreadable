@@ -7,20 +7,18 @@ export default class Rater extends Component {
   render(){
     const {voteScore}= this.props
     return(
-      <div className="raterwrapper" >
-        {/* <Icon.Group size='big'> */}
-          {/* <div> <Icon name='arrow up' /> </div> */}
-          <Icon name='arrow up' />
-          {/* <Button> <Icon name='thumbs outline up' /></Button> */}
-          {/* <Label basic>{voteScore}</Label> */}
-          <span>{voteScore}</span>
-          <Icon name='arrow down' />
-          {/* <Button> <Icon name='thumbs outline down' /></Button> */}
-          {/* <div> <Icon name='arrow down' /> </div> */}
-          {/* <Icon name='arrow down' /> */}
-        {/* </Icon.Group> */}
-    </div>
-
+      <Segment  compact raised size='mini'>
+        <div className="raterwrapper">
+          <div className="arrow up " aria-label="upvote">
+            <Icon link name="arrow up" size='large' />
+          </div>
+          {/* <div className="score " title={voteScore}>20.3k</div> */}
+          <div className="score " title={voteScore}>{voteScore}</div>
+          <div className="arrow down " aria-label="downvote">
+            <Icon link name="arrow down" size='large' />
+          </div>
+        </div>
+      </Segment>
     )
   }
 }

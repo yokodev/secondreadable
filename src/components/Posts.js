@@ -1,41 +1,61 @@
 import React, { Component } from 'react'
-import { Table, Header, Button, Icon, Card, Feed,Dropdown,  Menu, Segment } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import * as AppAction from '../actions/app'
+import { Dimmer, Loader, Tab, Header, Button, Icon, Card, Feed, Dropdown, Menu, Segment } from 'semantic-ui-react'
 import * as Util from '../utils'
 import SinglePost from './SinglePost'
+import sortBy from 'sort-by'
 
-export default class Posts extends Component {
+class Posts extends Component {
 
-  // handleSort = clickedColumn => () => {
-  //  const { column, data, direction } = this.state
-  //
-  //  if (column !== clickedColumn) {
-  //    this.setState({
-  //      column: clickedColumn,
-  //      data: _.sortBy(data, [clickedColumn]),
-  //      direction: 'ascending',
-  //    })
-  //
-  //    return
-  //  }
+  state ={
+    loading:true
+  }
+
+
+  handleLoading = ()=>{
+    this.props.posts
+    ? this.setState({loading:false})
+    : this.setState({loading:true})
+  }
+
+  componentDidMount(){
+    // this.props.dispatch()
+  }
+  handleClick = (e, { value }) => {
+    this.props.dispatch(AppAction.setOrderBy(value))
+  }
 
   render() {
-    console.log('posts :', this.props.posts)
+    // console.log('PROPS en POSTS :', this.props)
+    // this.handleLoading()
+    // const { loading }= this.state
     const { posts = [] } = this.props
     return (
-    <div>
-    <Menu attached='top' >
-      <Dropdown item text='Sort By' icon='sort' simple>
-        <Dropdown.Menu>
-          <Dropdown.Item>VoteScore</Dropdown.Item>
-          <Dropdown.Item>Timestamp</Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
-    </Menu>
-    {/* <Segment attached='bottom'> */}
-      {posts.map(post=> <SinglePost key={post.id} post={post}/>)}
-    {/* </Segment> */}
-  </div>
-
+      // <Segment loading={loading}>
+      <Segment >
+        <Menu attached="top">
+          <Menu.Menu position="right">
+            <Dropdown item text="Sort By" icon="sort">
+              <Dropdown.Menu>
+                <Dropdown.Item value="votescore" onClick={this.handleClick}>
+                  VoteScore
+                </Dropdown.Item>
+                <Dropdown.Item value="timestamp" onClick={this.handleClick}>
+                  Timestamp
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Menu.Menu>
+        </Menu>
+        {/* <Dimmer inactive >
+          <Loader >Loading</Loader>
+        </Dimmer> */}
+        {/* <Segment attached="bottom">{posts.map(post => <SinglePost key={post.id} post={post} />)}</Segment> */}
+        {posts.map(post => <SinglePost key={post.id} post={post} />)}
+      </Segment>
     )
   }
 }
+
+export default connect()(Posts)
