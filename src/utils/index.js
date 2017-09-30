@@ -41,7 +41,6 @@ export const arrayFromObject = (objectToConvert, idsArray) => {
 }
 
 export const sortedBy = ( posts=[], sortItemsBy) =>{
-  const defaultOrder = 'voteScore';
   let postToShow = []
   sortItemsBy && posts.length>0 ? postToShow = posts.sort(sortBy(sortItemsBy)) : postToShow = posts
   return postToShow;

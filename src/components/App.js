@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import {Route,withRouter} from 'react-router-dom'
+import {Switch, Route,withRouter} from 'react-router-dom'
 import './App.css';
 import { getPosts, getCategories } from '../actions'
 import Posts from './Posts'
@@ -23,11 +23,18 @@ class App extends Component {
       <div className="wrapper">
         <Header categories={categories} />
         <div className="content">
-          <Route exact path="/" render={({ location }) =><Posts posts={posts} /> }/>
-          { categories.map(cat=>
-            // <Route exact path="/" render={({ location }) =><Posts posts={posts} /> }/>
-            <Route key={cat.name} exact path={`/${cat.path}`} render={({ location }) =><Posts posts={posts} /> }/>
+          <Switch  >
+            <Route exact path="/" render={({ location }) =><Posts posts={posts} /> }/>
+            { categories.map(cat=>
+              // <Route exact path="/" render={({ location }) =><Posts posts={posts} /> }/>
+              <Route key={cat.name} exact path={`/${cat.path}`}
+              render={
+                ({match,history, location }) =><Posts posts={posts}/>
+              }
+            />
           )}
+
+          </Switch>
 
         </div>
       </div>

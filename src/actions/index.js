@@ -23,6 +23,7 @@ export function receivePosts(posts){
 }
 
 export function getPostsByCat(thisCategory) {
+  // console.log('cat to lookfor: ',thisCategory);
   return function(dispatch){
     return API.getPostsByCategory(thisCategory)
       .then(posts=>dispatch(receivePosts(posts)))
