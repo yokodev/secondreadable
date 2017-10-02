@@ -4,6 +4,7 @@ import {Switch, Route,withRouter} from 'react-router-dom'
 import './App.css';
 import { getPosts, getCategories } from '../actions'
 import Posts from './Posts'
+import PostDetail from './PostDetail'
 import  * as Utils from '../utils'
 // import { Tab,  Button, Icon, Card, Feed,Dropdown,  Menu, Segment } from 'semantic-ui-react'
 import Header from './Header'
@@ -33,7 +34,11 @@ class App extends Component {
               }
             />
           )}
-
+          <Route  path="/posts/:id" 
+          render={({ location }) =>
+          <PostDetail   /> 
+          }
+          />
           </Switch>
 
         </div>

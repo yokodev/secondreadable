@@ -5,13 +5,13 @@ import { Dimmer, Loader, Tab, Header, Button, Icon, Card, Feed, Dropdown, Menu, 
 import * as Util from '../utils'
 import SinglePost from './SinglePost'
 import sortBy from 'sort-by'
+import {Switch, Route,withRouter} from 'react-router-dom'
 
 class Posts extends Component {
 
   state ={
     loading:true
   }
-
 
   handleLoading = ()=>{
     this.props.posts
@@ -27,35 +27,41 @@ class Posts extends Component {
   }
 
   render() {
-    // console.log('PROPS en POSTS :', this.props)
-    // this.handleLoading()
-    // const { loading }= this.state
     const { posts = [] } = this.props
     return (
-      // <Segment loading={loading}>
-      <Segment >
-        <Menu attached="top">
-          <Menu.Menu position="right">
-            <Dropdown item text="Sort By" icon="sort">
-              <Dropdown.Menu>
-                <Dropdown.Item value="votescore" onClick={this.handleClick}>
-                  VoteScore
-                </Dropdown.Item>
-                <Dropdown.Item value="timestamp" onClick={this.handleClick}>
-                  Timestamp
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </Menu.Menu>
-        </Menu>
-        {/* <Dimmer inactive >
-          <Loader >Loading</Loader>
-        </Dimmer> */}
-        {/* <Segment attached="bottom">{posts.map(post => <SinglePost key={post.id} post={post} />)}</Segment> */}
-        {posts.map(post => <SinglePost key={post.id} post={post} />)}
-      </Segment>
+      <div>
+        <Segment >
+          <Menu attached="top">
+            <Menu.Menu position="right">
+              <Dropdown item text="Sort By" icon="sort">
+                <Dropdown.Menu>
+                  <Dropdown.Item value="votescore" onClick={this.handleClick}>
+                    VoteScore
+                  </Dropdown.Item>
+                  <Dropdown.Item value="timestamp" onClick={this.handleClick}>
+                    Timestamp
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Menu.Menu>
+          </Menu>
+          {/* <Segment attached="bottom">{posts.map(post => <SinglePost key={post.id} post={post} />)}</Segment> */}
+          {posts.map(post => <SinglePost key={post.id} post={post} />)}
+        </Segment>
+        
+      </div>
     )
   }
 }
 
 export default connect()(Posts)
+{/* <Switch>
+  <Route  exact path="/posts" 
+  render={({ location }) =>
+}/>
+<Route  path="/posts/:id" 
+render={({ location }) =>
+<Posts posts={posts} /> 
+}
+/>
+</Switch> */}
