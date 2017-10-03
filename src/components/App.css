@@ -96,6 +96,9 @@
   text-transform: uppercase;
   font-weight: bolder;
 }
+.post-body{
+  padding: 0px 10px 15px 0px
+}
 
 .post-submitted{
   text-transform: capitalize;
@@ -110,13 +113,14 @@
   font-weight: bolder;
 }
 
+
 .post-comments{
   margin-top: -15px;
   color: red;
   font-weight: bold;
 }
 .post-comments span{
-  
+
 }
 
 .active .item{

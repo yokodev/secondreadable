@@ -50,3 +50,10 @@ export const itemsSortedBy = (objectToConvert, idsArray,sortItemsBy) =>{
   return sortedBy(arrayFromObject(objectToConvert,idsArray),sortItemsBy)
 }
 // export function itemsSortedBy(objectToConvert, idsArray){
+
+export function separateLocation(location){
+  let tokens = location.split('/')
+  tokens.shift();
+
+  return tokens
+}

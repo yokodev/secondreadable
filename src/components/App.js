@@ -34,11 +34,7 @@ class App extends Component {
               }
             />
           )}
-          <Route  path="/posts/:id" 
-          render={({ location }) =>
-          <PostDetail   /> 
-          }
-          />
+          <Route  path="/:cat/:id"  render={({location,match:{params:{id}}}) => <PostDetail  location={location} id={id}/>  } />
           </Switch>
 
         </div>
@@ -47,8 +43,8 @@ class App extends Component {
   }
 }
 
-function mapStateToProps({
-    categories:{byId:cById, allIds:allCIds}=[],
+function mapStateToProps(
+  { categories:{byId:cById, allIds:allCIds}=[],
     posts:{ byId:pById, allIds:allPIds,orderBy='voteScore' },
     comments=[] }){
 

@@ -27,7 +27,7 @@ export const getCategories = () =>
     .then(status)
     .then(json)
 
-export const getCommentsById = (postID) =>
+export const getCommentsById = (postId) =>
   fetch(`${url}/comments`, headers)
     .then(status)
     .then(json)
@@ -37,13 +37,17 @@ export const getPostsByCategory = category =>
     .then(status)
     .then(json)
 
-export const getPostsDetail = postId =>
-  fetch(`${url}/posts/${postId}`, headers)
-    .then(status)
-    .then(json)
-    
-export const getCommentsByPost = postId =>
+export const getPostDetail = postId =>
   fetch(`${url}/posts/${postId}`, headers)
     .then(status)
     .then(json)
 
+export const allCommentsByPost = postId =>
+  fetch(`${url}/posts/${postId}/comments`, headers)
+    .then(status)
+    .then(json)
+
+export const getCommentById = commentId =>
+  fetch(`${url}/comments/${commentId}`, headers)
+    .then(status)
+    .then(json)
