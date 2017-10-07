@@ -78,7 +78,10 @@
   width: 70px;
   padding-left: 10px;
   align-self: center;
-
+  
+}
+.post-image .image{
+  background-color: lightgrey;
 }
 .post-content {
   /*background-color: rgb(139, 222, 1);*/

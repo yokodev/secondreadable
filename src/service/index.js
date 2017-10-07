@@ -14,8 +14,8 @@ function json(response) {
   return response.json()
 }
 
-export const getPosts = categories => {
-  let urlPosts = categories ? `${url}/${categories}/posts` : `${url}/posts`
+export const getPosts = category => {
+  let urlPosts = category ? `${url}/${category}/posts` : `${url}/posts`
   return fetch(urlPosts, headers)
     .then(status)
     .then(json)
@@ -47,7 +47,7 @@ export const allCommentsByPost = postId =>
     .then(status)
     .then(json)
 
-export const getCommentById = commentId =>
+export const getCommentDetail = commentId =>
   fetch(`${url}/comments/${commentId}`, headers)
     .then(status)
     .then(json)

@@ -5,10 +5,11 @@ import * as Actions from '../actions'
 import * as Util from '../utils'
 import { Segment, Image } from 'semantic-ui-react'
 import Rater from './Rater'
-import image from '../assets/images/snoo-head.jpg'
-import { Link } from 'react-router-dom'
+import image from '../assets/images/message.png'
+import { Link } from 'react-router'
 import { myBreadCrumb } from './MyComponents'
 import Comments from './Comments'
+import './PostDetail.css'
 
 class PostDetail extends Component {
   componentDidMount() {
@@ -25,33 +26,27 @@ class PostDetail extends Component {
     // let id, title, timestamp, author, voteScore, body
     if (postDetail) {
       let { id, title, timestamp, author, voteScore, body, category } = postDetail
-      postToShow = (
-				<div>
-        <Segment>
-          <div className="post">
-            <div className="post-rater">
-              <Rater voteScore={voteScore} />
+      postToShow = <div>
+          <Segment>
+            <div className="post">
+              <div className="post-rater">
+                <Rater voteScore={voteScore} />
+              </div>
+              <div className="post-image">
+                <Image shape="circular" src={image} size="tiny" />
+              </div>
+              <div className="post-content">
+                <h2 className="post-title">{title}</h2>
+                <p className="post-submitted">
+                  {`submitted ${Util.timeSince(timestamp)} by `} <span> {author} </span>
+                </p>
+                <p className="post-body">{body}</p>
+                <p className="post-comments">{`805 comments `}</p>
+              </div>
             </div>
-            <div className="post-image">
-              <Image src={image} size="tiny" />
-            </div>
-            <div className="post-content">
-              <p>
-                <Link className="post-title" to={`/${category}/${id}`} onClick={() => this.handleLinkClicked(id)}>
-                  {title}
-                </Link>
-              </p>
-              <p className="post-submitted">
-                {`submitted ${Util.timeSince(timestamp)} by `} <span> {author} </span>
-              </p>
-              <p className="post-body">{body}</p>
-              <p className="post-comments">{`805 comments `}</p>
-            </div>
-          </div>
-        </Segment>
-				<Comments	/>
-				</div>
-      )
+          </Segment>
+          <Comments />
+        </div>;
     }else {
 			postToShow = null
 		}

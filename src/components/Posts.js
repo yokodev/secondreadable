@@ -5,7 +5,7 @@ import { Dimmer, Loader, Tab, Header, Button, Icon, Card, Feed, Dropdown, Menu, 
 import * as Util from '../utils'
 import SinglePost from './SinglePost'
 import sortBy from 'sort-by'
-import {Switch, Route,withRouter} from 'react-router-dom'
+
 
 class Posts extends Component {
 
@@ -20,6 +20,7 @@ class Posts extends Component {
   }
 
   componentDidMount(){
+    console.log('props en ',this.props)
     // this.props.dispatch()
   }
   handleClick = (e, { value }) => {
