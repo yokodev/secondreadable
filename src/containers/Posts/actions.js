@@ -1,17 +1,35 @@
 import * as API from 'service/'
-export const RECEIVE_POSTS = 'readable/App/RECEIVE_POSTS'
-export const RECEIVE_CATEGORIES = 'readable/App/RECEIVE_CATEGORIES'
-export const RECEIVE_COMMENTS = 'readable/App/RECEIVE_COMMENTS'
-export const RECEIVE_POST_DETAIL = 'readable/App/RECEIVE_POST_DETAIL'
-export const GENERATE_POST_DETAIL = 'readable/App/GENERATE_POST_DETAIL'
-export const GENERATE_OWN_POST_DETAIL = 'readable/App/GENERATE_OWN_POST_DETAIL'
+// export const RECEIVE_POSTS = 'readable/App/RECEIVE_POSTS'
+export const RECEIVE_POSTS = 'RECEIVE_POSTS'
+export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES'
+export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS'
+export const RECEIVE_POST_DETAIL = 'RECEIVE_POST_DETAIL'
+export const GENERATE_POST_DETAIL = 'GENERATE_POST_DETAIL'
+export const GENERATE_OWN_POST_DETAIL = 'GENERATE_OWN_POST_DETAIL'
 export const ADD_POST = 'ADD_POST'
 export const DELETE_POST = 'DELETE_POST'
 export const UPDATE_POST = 'UPDATE_POST'
 
-export const LOAD_REPOS = 'boilerplate/App/LOAD_REPOS';
-export const LOAD_REPOS_SUCCESS = 'boilerplate/App/LOAD_REPOS_SUCCESS';
-export const LOAD_REPOS_ERROR = 'boilerplate/App/LOAD_REPOS_ERROR';
+// this is the sorting part
+export const SET_ORDER_BY = 'SET_ORDER_BY'
+
+export const sortBy = {
+  timestamp: 'TIMESTAMP',
+  votescore: 'VOTESCORE',
+}
+
+export function setOrderBy(sortBy){
+  return{
+    type:SET_ORDER_BY,
+    sortBy
+  }
+}
+// this is the sorting part
+// this is just an example
+// export const LOAD_REPOS = 'boilerplate/App/LOAD_REPOS';
+// export const LOAD_REPOS_SUCCESS = 'boilerplate/App/LOAD_REPOS_SUCCESS';
+// export const LOAD_REPOS_ERROR = 'boilerplate/App/LOAD_REPOS_ERROR';
+// this is just an example
 
 
 export function getPosts() {

@@ -10,12 +10,12 @@ import { connect } from 'react-redux'
 class SinglePost extends Component {
   handleLinkClicked = postId => {
     // this.props.dispatch(Actions.genPostDetail(postId))
-    // console.log(`este es el postid `,postId);
+    console.log(`este es el postid `,postId);
     this.props.dispatch(Actions.genPostDetail(postId))
   }
   render() {
     // let id, timestamp, title, body, author, category, voteScore, deleted
-    // console.log(`lasprops en singlePost: `, this.props)
+    console.log(`lasprops en singlePost: `, this.props)
     let { id, title, timestamp, author, voteScore, category } = this.props.post
     return (
       <Segment>

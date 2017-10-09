@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { Switch, Route, withRouter } from 'react-router';
+import { Switch, Route } from 'react-router';
 import './app.css';
+// import { connect } from 'redux'
 // import { getPosts, getCategories } from '../actions';
 // import Posts from 'Posts';
 // import PostDetail from 'PostDetail';
 // import * as Utils from 'utils';
-import Layout from 'components/Layout'
+// import Layout from 'components/Layout'
 import Posts from 'containers/Posts'
-import PostDetail from 'containers/Detail'
+// import PostDetail from 'containers/Detail'
 
 
 
@@ -22,20 +23,21 @@ class App extends Component {
     // console.log('PROPS: ',this.props);
     // const { categories, posts } = this.props;
     return (
-      <Layout >
+      // <Layout >
         <Switch>
-            <Route exact path="/:cat?"
-              // render={() => <Posts posts={posts} />}
-              render={() => <Posts />}
-            />
+          <Route exact path="/"  component={Posts}/>
+          {/* <Route exact path="/:cat?"
+            // render={() => <Posts posts={posts} />}
+            // render={() => <Posts />}
+          /> */}
      
-            <Route path="/:cat/:id"
+            {/* <Route path="/:cat/:id"
               render={({ location, match: { params: { id } } }) => (
                 <PostDetail location={location} id={id} />
               )}
-            />
+            /> */}
           </Switch>
-      </Layout>
+      // </Layout>
     )
   }
 }
@@ -58,6 +60,7 @@ class App extends Component {
 // });
 
 // export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+// export default (connect(mapStateToProps, mapDispatchToProps)(App))
 export default App
 
 
