@@ -13,10 +13,10 @@ export const UPDATE_POST = 'UPDATE_POST'
 // this is the sorting part
 export const SET_ORDER_BY = 'SET_ORDER_BY'
 
-export const sortBy = {
-  timestamp: 'TIMESTAMP',
-  votescore: 'VOTESCORE',
-}
+// export const sortBy = {
+//   timestamp: 'TIMESTAMP',
+//   votescore: 'VOTESCORE',
+// }
 
 export function setOrderBy(sortBy){
   return{
@@ -25,12 +25,6 @@ export function setOrderBy(sortBy){
   }
 }
 // this is the sorting part
-// this is just an example
-// export const LOAD_REPOS = 'boilerplate/App/LOAD_REPOS';
-// export const LOAD_REPOS_SUCCESS = 'boilerplate/App/LOAD_REPOS_SUCCESS';
-// export const LOAD_REPOS_ERROR = 'boilerplate/App/LOAD_REPOS_ERROR';
-// this is just an example
-
 
 export function getPosts() {
   return function(dispatch){
@@ -53,21 +47,6 @@ export function getPostsByCat(thisCategory) {
   }
 }
 
-export function getCategories() {
-  return function(dispatch){
-    return API.getCategories()
-      .then(categories=>dispatch(receiveCategories(categories)))
-  }
-}
-
-export function receiveCategories(categories){
-  console.log(categories);
-  return {
-    type: RECEIVE_CATEGORIES,
-    categories
-  }
-}
-
 export function receivePostDetail(postDetail){
   return {
     type: RECEIVE_POST_DETAIL,
@@ -83,3 +62,14 @@ export const genPostDetail = (postId)=>(
     postId
   }
 )
+
+export function createNewPost(newPost,callback) {
+  return function(dispatch){
+    API.createNewPost(newPost)
+    .then((data)=>{
+      console.log(`Request succedeed`,data)
+      callback()
+    })
+        // return dispatch(getPosts())
+  }
+}

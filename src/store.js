@@ -1,29 +1,22 @@
 import { createStore, applyMiddleware, compose  } from 'redux'
 import thunk from 'redux-thunk'
 import logger from 'redux-logger'
-import rootReducer from './reducers'
-
+import rootReducer from 'containers/App/reducer'
+// import immutableStateMiddleware  from 'redux-immutable-state-invariant.default()'
 import { routerMiddleware } from 'react-router-redux';
+const immutableStateMiddleware = require('redux-immutable-state-invariant').default()
+
 
 export default function configureStore( history ){
 
   const routerMiddleWare= routerMiddleware(history)
-  
+
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-  
+
   const store = createStore(
     rootReducer/*initialState,*/,
-    composeEnhancers(applyMiddleware(require('redux-immutable-state-invariant').default(),thunk, logger, routerMiddleWare))
+    composeEnhancers(applyMiddleware(thunk, routerMiddleWare,immutableStateMiddleware, logger))
   );
-  
-  
+
   return store
 }
-
-// const initialState = {
-  //     categories:{ byId:{}, allIds:[]},
-  //     posts:{ byId:{}, allIds:[] },
-  //     comments:{ byId:{}, allIds:[] },
-  //     ui:{}
-  // }
-  

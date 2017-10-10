@@ -1,6 +1,13 @@
 // import axios from 'axios'
+import * as Utils from 'utils'
 const url = 'http://localhost:3001'
-const headers = { headers: { 'Authorization': 'whatever-you-wan1' }}
+const headers = { headers: { 'Authorization': 'whatever-you-wan1'}
+    }
+const headerPost= {headers:{
+  // 'Accept':'application/json',
+  'Content-Type':'application/json',
+  'Authorization': 'whatever-you-wan1',
+}}
 
 function status(response) {
   if (response.status >= 200 && response.status < 300) {
@@ -20,7 +27,6 @@ export const getPosts = category => {
     .then(status)
     .then(json)
 }
-
 
 export const getCategories = () =>
   fetch(`${url}/categories`, headers)
@@ -51,3 +57,24 @@ export const getCommentDetail = commentId =>
   fetch(`${url}/comments/${commentId}`, headers)
     .then(status)
     .then(json)
+
+export const createNewPost = formValues =>{
+  let newPost= Utils.prepareNewPost(formValues)
+  let {headers} =headerPost
+  // console.log(newPost)
+  // console.log(JSON.stringify(newPost))
+  // debugger
+  fetch(`${url}/posts`,
+    {
+      method: "post",
+      headers,
+      body:JSON.stringify(newPost)})
+  // fetch(`${url}/posts/`, {method: "POST",headers, body:newPost})
+  .then(json)
+  .then(data=> new Promise(data))
+  .catch(error=>{
+    console.log('Request Failed',error);
+  })
+  // .then(json)
+
+}

@@ -1,17 +1,18 @@
 import React from 'react';
 
 import './layout.css';
-import * as actions from 'containers/Categories/actions';
+// import * as actions from 'containers/Categories/actions';
+
 import Header from '../Header';
 
 function Layout(props) {
+  const {categories=[]}= props
   return (
     <div className="wrapper">
-      {/* <Header categories={categories} /> */}
-      <Header  />
+      <Header categories={categories} />
       <div className="content">
         {props.children}
-      </div> 
+      </div>
     </div>
   );
 }

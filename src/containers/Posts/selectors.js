@@ -3,12 +3,12 @@ import sortBy from 'sort-by'
 
 // create select function to pickup the piece of state we want
 
-const postsSelector = state =>{
-	console.log('este es el statod ',state.posts.byId)
-	return state.posts.byId
-}
+const postsSelector = state => state.posts.byId
 const postsIdsSelector = state =>state.posts.allIds
-const orderBySelector = state =>state.posts.orderBy
+const orderBySelector = state =>{
+	console.log(state.posts.orderBy)
+	return state.posts.orderBy
+}
 
 const arrayFromObject = (objectToConvert, idsArray) => {
   let result = []
@@ -18,7 +18,7 @@ const arrayFromObject = (objectToConvert, idsArray) => {
 
 const sortedBy = ( posts=[], sortItemsBy) =>{
   let postToShow = []
-  sortItemsBy && posts.length>0 ? postToShow = posts.sort(sortBy(sortItemsBy)) : postToShow = posts
+  sortItemsBy && posts.length>0 ? postToShow = posts.sort(sortBy(-sortItemsBy)) : postToShow = posts
   return postToShow;
 }
 

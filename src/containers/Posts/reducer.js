@@ -1,5 +1,4 @@
 import  * as Action  from './actions'
-// import  { RECEIVE_POSTS ,GENERATE_POST_DETAIL, RECEIVE_POST_DETAIL, SET_ORDER_BY }   from './actions'
 
 import  mapkeys from 'lodash.mapkeys'
 
@@ -10,24 +9,25 @@ function createNewPosts(newPosts){
   return { byId, allIds }
 }
 
-function genPostDetail(state={},postId){
-  // console.log(state)
-  let postDetail ;
-  state.byId ? postDetail = state.byId[postId]:postDetail={}
-  return postDetail ? {postDetail}: {id:postId, title: "State was empty on post reducer"}
-}
+// function genPostDetail(state={},postId){
+//   let postDetail ;
+//   state.byId ? postDetail = state.byId[postId]:postDetail={}
+//   return postDetail ? {postDetail}: {id:postId, title: "State was empty on post reducer"}
+// }
 
-function posts(state = {}, action ){
+const initialState = { orderBy:'voteScore'}
+function posts(state = initialState, action ){
   switch (action.type) {
     case Action.RECEIVE_POSTS:
-      console.log('entro....',action.type)
       return { ...state, ...createNewPosts(action.posts) }
-    case Action.GENERATE_POST_DETAIL:
-      return { ...state, ...genPostDetail(state, action.postId) }
-    case Action.RECEIVE_POST_DETAIL:
-      return { ...state, ...{postDetail:action.postDetail} }    
+    // case Action.GENERATE_POST_DETAIL:
+    //   return { ...state, ...genPostDetail(state, action.postId) }
+    // case Action.RECEIVE_POST_DETAIL:
+    //   return { ...state, ...{postDetail:action.postDetail} }
     case Action.SET_ORDER_BY:
-      return { orderBy:action.sortBy }
+      console.log('stado: ',state);
+      return {...state, orderBy:action.sortBy }
+      // return Object.assign({},state,{orderBy:action.sortBy})
     default:
       return state
   }
