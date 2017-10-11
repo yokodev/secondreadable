@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Image } from 'semantic-ui-react';
 import image from 'assets/images/reading-snoo.png';
 import './Header.css';
-import { Link, NavLink/* , withRouter */ } from 'react-router-dom';
+import { Link, NavLink, withRouter  } from 'react-router-dom';
 import * as actions from 'containers/Posts/actions';
 
 class Header extends Component {

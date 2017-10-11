@@ -4,7 +4,7 @@ import logger from 'redux-logger'
 import rootReducer from 'containers/App/reducer'
 // import immutableStateMiddleware  from 'redux-immutable-state-invariant.default()'
 import { routerMiddleware } from 'react-router-redux';
-const immutableStateMiddleware = require('redux-immutable-state-invariant').default()
+// const immutableStateMiddleware = require('redux-immutable-state-invariant').default()
 
 
 export default function configureStore( history ){
@@ -15,7 +15,7 @@ export default function configureStore( history ){
 
   const store = createStore(
     rootReducer/*initialState,*/,
-    composeEnhancers(applyMiddleware(thunk, routerMiddleWare,immutableStateMiddleware, logger))
+    composeEnhancers(applyMiddleware(thunk, routerMiddleWare, logger))
   );
 
   return store

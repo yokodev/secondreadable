@@ -42,7 +42,6 @@
 }
 
 
-/*.header-menu div.ui.pointing.secondary.menu{*/
 .header-menu {
   grid-area: menu;
   height: 50px;

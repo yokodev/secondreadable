@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link,withRouter } from 'react-router-dom'
 import * as Util from 'utils'
 import { connect } from 'react-redux';
 import { deletePost, getPosts }  from 'containers/Posts/actions'
@@ -13,7 +13,7 @@ import ToolBar from 'components/ToolBar'
 class PostItem extends Component {
 
   state={loading:false}
-  handleLinkClicked = postId => {
+  getDetail = postId => {
     console.log(this.props)
     console.log(`este es el postid `,postId);
     // this.props.dispatch(Actions.genPostDetail(postId))
@@ -23,6 +23,7 @@ class PostItem extends Component {
     console.log(this.props);
     this.setState({loading:true})
     this.props.deletePost(id,()=>{
+      console.log('regres0 del callback ',id);
       this.setState({loading:false})
       this.props.history.push('/')
     })
@@ -50,7 +51,8 @@ class PostItem extends Component {
           </div>
             <div className="post-content">
               <p>
-                <Link className="post-title" to={`/${category}/${id}`} onClick={() => this.handleLinkClicked(id)}>
+                {/* <Link className="post-title" to={`${category}/${id}`} onClick={() => this.getDetail(id)}> */}
+                <Link className="post-title" to={`/${category}/${id}`} >
                   {title}
                 </Link>
               </p>
@@ -68,5 +70,5 @@ class PostItem extends Component {
   }
 }
 
-export default connect(null,{deletePost})(PostItem)
+export default withRouter(connect(null,{deletePost})(PostItem))
 // export default PostItem

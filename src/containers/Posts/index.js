@@ -7,6 +7,7 @@ import * as Utils from 'utils';
 import SortBySelector from './selectors'
 import NewPostForm from '../../components/Form'
 import {Segment, Menu,Dropdown, Button, Icon, Modal,Container, Grid } from 'semantic-ui-react'
+import { Link, NavLink, withRouter  } from 'react-router-dom';
 
 class Posts extends Component {
 
@@ -21,22 +22,20 @@ class Posts extends Component {
   handleVoteClick = (e, { value }) => {
     this.props.setOrderBy(value)
   }
-  // handleAddClick = (e,data) =>{
-  //   console.log('button data', data);
-  // }
+
   handleOpen = () => {
-    this.setState({ modalOpen: true })
+    // this.setState({ modalOpen: true })
+    console.log(this.props);
+    this.props.history.push('/newPost')
   }
   handleClose = () => this.setState({ modalOpen: false })
   handleNewPost = (values)=>{
-    // console.log('PROPS ',this.props);
-    this.props.createNewPost(values,
-      // ()=>this.props.history.push('/')
-      ()=>{
-        this.props.getPosts()
-        this.props.history.push('/')
-      }
-    )
+    // this.props.createNewPost(values,
+    //   ()=>{
+    //     this.props.getPosts()
+    //     this.props.history.push('/')
+    //   }
+    // )
   }
   render() {
     const {posts, categories,history } = this.props;
@@ -45,6 +44,8 @@ class Posts extends Component {
         <Menu attached="top">
           <Menu.Item >
             <Button onClick={this.handleOpen}>Add Post</Button>
+            <Link to="/newPost">newpost</Link>
+            {/* <Button onClick={this.handleOpen}>Add Post</Button> */}
           </Menu.Item>
           <Menu.Menu position="right">
             <Dropdown item text="Sort By" icon="sort">
