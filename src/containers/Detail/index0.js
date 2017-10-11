@@ -11,16 +11,17 @@ import Comments from 'components/Comments'
 
 class PostDetail extends Component {
   componentDidMount() {
-    console.log(`this props on detail componentDidMount: `,this.props)
-    this.props.dispatch(Actions.getPostDetail(this.props.match.params.id))
+    // console.log(`this props on detail componentDidMount: `,this.props)
+    this.props.dispatch(Actions.getPostDetail(this.props.id))
   }
 
   render() {
     console.log(`this props on detail: `, this.props)
 
-    const { postDetail } = this.props
     // const { id, title, timestamp, author, voteScore, body } = postDetail
+    const { location: { pathname }, posts: { postDetail } } = this.props
     let postToShow
+    // let id, title, timestamp, author, voteScore, body
     if (postDetail) {
       let { id, title, timestamp, author, voteScore, body, category } = postDetail
       postToShow = <div>
@@ -43,7 +44,7 @@ class PostDetail extends Component {
             </div>
           </Segment>
           <Comments />
-        </div>
+        </div>;
     }else {
 			postToShow = null
 		}
@@ -51,7 +52,17 @@ class PostDetail extends Component {
   }
 }
 
-const mapStateToProps =({postDetail} )=> ({ postDetail  })
-
+function mapStateToProps({
+  // posts:{ byId:pById, allIds:allPIds,orderBy='voteScore' },
+  posts,
+  comments = [],
+  postDetail = {}
+}) {
+  return {
+    // posts : Utils.itemsSortedBy(pById, allPIds, orderBy) ,
+    posts,
+    comments,
+    postDetail
+  }
+}
 export default connect(mapStateToProps)(PostDetail)
-// export default PostDetail

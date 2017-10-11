@@ -2,23 +2,28 @@ import React, {Component }  from 'react'
 import { Button, Form, Segment, Header } from 'semantic-ui-react'
 import * as Utils from 'utils'
 
-
 class ReadForm extends Component{
    state = {}
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
    handleSubmit = () => {
+    //  console.log(this.state);
      this.setState({ body: '',author: '',category: '', title: '' })
-
-     console.log('props en handleSubmit en  GralForm component: ',this.props);
-    this.props.onSubmit(this.state)
+     console.log('props en newpost: ',this.props);
+    //  this.props.createNewPost(this.state,
+    //    ()=>{
+    //      this.props.getPosts()
+    //      this.props.history.push('/')
+    //    }
+    //  )
+    //  this.props.onSubmit(this.state)
  }
   handleCancel = (e) =>{
-    console.log('handleCancel GralForm ',this.props);
-    this.props.onCancel()
+    e.preventDefault()
+    console.log(this.props);
+    // this.props.onCancel()
   }
-
   catToOptions = categories =>{
     let options=[]
     categories && categories.length>0
@@ -30,15 +35,15 @@ class ReadForm extends Component{
   }
 
   render(){
-    console.log(`props en render new Gralform `,this.props);
+    // console.log(`props en new form`,this.props);
     const catOptions = this.catToOptions(this.props.categories)
-    const {formTitle} = this.props
     const { body, author, category, title } = this.state
+    console.log('render en form');
 
     return(
       <Segment raised size="large" >
       <Header as='h1' attached='top' textAlign="center">
-        {formTitle}
+        Add Post
       </Header>
       <Segment raised size="large" >
       <Form onSubmit={this.handleSubmit} widths='equal'>
@@ -55,5 +60,6 @@ class ReadForm extends Component{
     )
   }
 }
+
 
 export default ReadForm

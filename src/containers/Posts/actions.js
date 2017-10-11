@@ -6,17 +6,12 @@ export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS'
 export const RECEIVE_POST_DETAIL = 'RECEIVE_POST_DETAIL'
 export const GENERATE_POST_DETAIL = 'GENERATE_POST_DETAIL'
 export const GENERATE_OWN_POST_DETAIL = 'GENERATE_OWN_POST_DETAIL'
-export const ADD_POST = 'ADD_POST'
+
 export const POST_DELETED = 'POST_DELETED'
-export const UPDATE_POST = 'UPDATE_POST'
+
 
 // this is the sorting part
 export const SET_ORDER_BY = 'SET_ORDER_BY'
-
-// export const sortBy = {
-//   timestamp: 'TIMESTAMP',
-//   votescore: 'VOTESCORE',
-// }
 
 export function setOrderBy(sortBy){
   return{
@@ -47,32 +42,8 @@ export function getPostsByCat(thisCategory) {
   }
 }
 
-export function receivePostDetail(postDetail){
-  return {
-    type: RECEIVE_POST_DETAIL,
-    postDetail
-  }
-}
-export const getPostDetail = (postId)=>(dispatch)=> API.getPostDetail(postId)
-  .then( postDetail=>dispatch(receivePostDetail(postDetail)))
 
-export const genPostDetail = (postId)=>(
-  {
-    type:GENERATE_POST_DETAIL,
-    postId
-  }
-)
 
-export function createNewPost(newPost,callback) {
-  return function(dispatch){
-    API.createNewPost(newPost)
-    .then((data)=>{
-      console.log(`Request succedeed`,data)
-      callback()
-    })
-        // return dispatch(getPosts())
-  }
-}
 export function deletePost(postId,callback) {
   return function(dispatch){
     return API.deletePost(postId)

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './post.css';
-import { getPosts, setOrderBy, createNewPost } from './actions';
+import { getPosts, setOrderBy} from './actions';
 import SinglePost from 'containers/PostItem';
 import * as Utils from 'utils';
 import SortBySelector from './selectors'
@@ -39,6 +39,7 @@ class Posts extends Component {
   }
   render() {
     const {posts, categories,history } = this.props;
+    console.log('las cats ',categories);
     return (
       <Segment >
         <Menu attached="top">
@@ -92,4 +93,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, {getPosts, setOrderBy, createNewPost})(Posts);
+export default connect(mapStateToProps, {getPosts, setOrderBy})(Posts);

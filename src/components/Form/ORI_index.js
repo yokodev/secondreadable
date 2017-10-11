@@ -1,7 +1,6 @@
 import React, {Component }  from 'react'
-import { Button, Form, Segment, Header } from 'semantic-ui-react'
+import { Button, Form } from 'semantic-ui-react'
 import * as Utils from 'utils'
-
 
 class ReadForm extends Component{
    state = {}
@@ -9,16 +8,15 @@ class ReadForm extends Component{
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
    handleSubmit = () => {
+    //  console.log(this.state);
      this.setState({ body: '',author: '',category: '', title: '' })
-
-     console.log('props en handleSubmit en  GralForm component: ',this.props);
-    this.props.onSubmit(this.state)
+     this.props.onSubmit(this.state)
  }
   handleCancel = (e) =>{
-    console.log('handleCancel GralForm ',this.props);
+    e.preventDefault()
+    console.log(this.props);
     this.props.onCancel()
   }
-
   catToOptions = categories =>{
     let options=[]
     categories && categories.length>0
@@ -30,17 +28,12 @@ class ReadForm extends Component{
   }
 
   render(){
-    console.log(`props en render new Gralform `,this.props);
+    // console.log(`props en new form`,this.props);
     const catOptions = this.catToOptions(this.props.categories)
-    const {formTitle} = this.props
     const { body, author, category, title } = this.state
+    console.log('render en form');
 
     return(
-      <Segment raised size="large" >
-      <Header as='h1' attached='top' textAlign="center">
-        {formTitle}
-      </Header>
-      <Segment raised size="large" >
       <Form onSubmit={this.handleSubmit} widths='equal'>
         <Form.Input label="Title" placeholder='Title' name='title' value={title} required onChange={this.handleChange}  />
         <Form.Input label="Author" placeholder='Author' name='author' value={author} required onChange={this.handleChange} />
@@ -50,10 +43,9 @@ class ReadForm extends Component{
         <Button type='submit'>Submit</Button>
         <Button  onClick={this.handleCancel} formNoValidate >Cancel</Button>
       </Form>
-      </Segment>
-    </Segment>
     )
   }
 }
+
 
 export default ReadForm

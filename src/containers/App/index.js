@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route/*, withRouter*/ } from 'react-router';
+import { Switch, Route, withRouter } from 'react-router-dom';
 // import './app.css';
 import { connect } from 'react-redux'
 import { getCategories } from 'containers/Categories/actions';
@@ -9,6 +9,7 @@ import PostDetail from 'containers/Detail';
 import Layout from 'components/Layout'
 import Posts from 'containers/Posts'
 import NewPost from 'containers/NewPost'
+import NotFoundPage from 'containers/NotFoundPage'
 
 class App extends Component {
 
@@ -22,20 +23,20 @@ class App extends Component {
     return (
       <Layout categories={categories} >
         <Switch>
-          <Route exact path="/newPost"
+          <Route exact path="/"
+            render={(rprops) => <Posts categories={categories} {...rprops} />}
+          />
+          <Route path="/notfound" component={NotFoundPage} />
+          <Route path="/newPost"
             render={(rprops) => <NewPost categories={categories} {...rprops} />}
           />
-          <Route exact path="/:cat/:id"
-            render={(props) => (
-              <PostDetail {...props} />
-            )}
+          <Route path="/:cat/:id"
+            // render={(props) => ( <PostDetail {...props} /> )}
+            component={PostDetail}
           />
-          <Route exact path="/:cat?"
+          <Route path="/:cat"
             render={(rprops) => <Posts categories={categories}{...rprops} />}
             />
-          {/* <Route exact path="/"
-            render={(rprops) => <Posts categories={categories} {...rprops} />}
-          /> */}
         </Switch>
       </Layout>
     )
@@ -57,4 +58,4 @@ function mapStateToProps(state) {
 
 // export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
 // export default (connect(mapStateToProps, mapDispatchToProps)(App))
-export default connect(mapStateToProps,{getCategories})(App)
+export default withRouter(connect(mapStateToProps,{getCategories})(App))

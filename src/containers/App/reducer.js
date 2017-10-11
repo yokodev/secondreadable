@@ -1,13 +1,16 @@
 import {combineReducers } from "redux";
+import { routerReducer } from 'react-router-redux';
+
 import categories from '../Categories/reducer'
 import posts from '../Posts/reducer'
+import postDetail from '../Detail/reducer'
 // import comments from './comments'
-import { routerReducer } from 'react-router-redux';
 
 
 const readable = combineReducers({
   categories,
   posts,
+  postDetail,
   // comments,
   router: routerReducer
 })
