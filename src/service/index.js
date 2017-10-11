@@ -4,7 +4,7 @@ const url = 'http://localhost:3001'
 const headers = { headers: { 'Authorization': 'whatever-you-wan1'}
     }
 const headerPost= {headers:{
-  // 'Accept':'application/json',
+  'Accept':'application/json',
   'Content-Type':'application/json',
   'Authorization': 'whatever-you-wan1',
 }}
@@ -61,20 +61,22 @@ export const getCommentDetail = commentId =>
 export const createNewPost = formValues =>{
   let newPost= Utils.prepareNewPost(formValues)
   let {headers} =headerPost
-  // console.log(newPost)
-  // console.log(JSON.stringify(newPost))
-  // debugger
-  fetch(`${url}/posts`,
-    {
-      method: "post",
-      headers,
-      body:JSON.stringify(newPost)})
-  // fetch(`${url}/posts/`, {method: "POST",headers, body:newPost})
-  .then(json)
-  .then(data=> new Promise(data))
-  .catch(error=>{
-    console.log('Request Failed',error);
-  })
-  // .then(json)
+  return fetch(`${url}/posts`,{
+    method: "post",
+    headers,
+    body:JSON.stringify(newPost)}
+    )
+    .then(response=>response.json())
+    .then(data=> data)
+    .catch(error=>{ console.log('Request Failed',error) })
 
+}
+
+export const deletePost = postId =>{
+  let {headers} =headerPost
+  return fetch(`${url}/posts/${postId}`,
+    { method: "delete", headers })
+  .then(response=>response.json())
+  .then(data=> data)
+  .catch(error=>{ console.log('Request Failed',error) })
 }

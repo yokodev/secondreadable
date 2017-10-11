@@ -7,7 +7,7 @@ export const RECEIVE_POST_DETAIL = 'RECEIVE_POST_DETAIL'
 export const GENERATE_POST_DETAIL = 'GENERATE_POST_DETAIL'
 export const GENERATE_OWN_POST_DETAIL = 'GENERATE_OWN_POST_DETAIL'
 export const ADD_POST = 'ADD_POST'
-export const DELETE_POST = 'DELETE_POST'
+export const POST_DELETED = 'POST_DELETED'
 export const UPDATE_POST = 'UPDATE_POST'
 
 // this is the sorting part
@@ -73,3 +73,28 @@ export function createNewPost(newPost,callback) {
         // return dispatch(getPosts())
   }
 }
+export function deletePost(postId,callback) {
+  return function(dispatch){
+    return API.deletePost(postId)
+    .then(post=>{
+      console.log(`Request succedeed`,post)
+      dispatch(getPosts())
+      callback()
+    })
+        // return dispatch(getPosts())
+  }
+}
+
+export function postDeleted(postId){
+  return {
+    type: POST_DELETED,
+    postId
+  }
+}
+
+// export function getPostsByCat(thisCategory) {
+//   return function(dispatch){
+//     return API.getPostsByCategory(thisCategory)
+//       .then(posts=>dispatch(receivePosts(posts)))
+//   }
+// }

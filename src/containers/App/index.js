@@ -4,10 +4,11 @@ import { Switch, Route/*, withRouter*/ } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { getCategories } from 'containers/Categories/actions';
 import CatToArraySelector from 'containers/Categories/selectors'
-// import PostDetail from 'PostDetail';
+import PostDetail from 'containers/Detail';
 // import * as Utils from 'utils';
 import Layout from 'components/Layout'
 import Posts from 'containers/Posts'
+import NewPost from 'components/Form'
 
 class App extends Component {
 
@@ -21,20 +22,20 @@ class App extends Component {
     return (
       <Layout categories={categories} >
         <Switch>
-          {/* <Route exact path="/"  component={Posts}/>
-          <Route   path="/:cat"  component={Posts}/> */}
+          <Route  path="/:cat"
+            render={(rprops) => <Posts categories={categories}{...rprops} />}
+            />
+          <Route path="/:cat/:id"
+            render={({ location, match: { params: { id } } }) => (
+            <PostDetail location={location} id={id} />
+          )}
+          />
+          <Route exact path="/newPost"
+            render={(rprops) => <NewPost categories={categories} {...rprops} />}
+          />
           <Route exact path="/"
-            render={() => <Posts categories={categories} />}
+            render={(rprops) => <Posts categories={categories} {...rprops} />}
           />
-          <Route exact path="/:cat/"
-            render={() => <Posts categories={categories} />}
-          />
-
-            {/* <Route path="/:cat/:id"
-              render={({ location, match: { params: { id } } }) => (
-                <PostDetail location={location} id={id} />
-              )}
-            /> */}
           </Switch>
       </Layout>
     )

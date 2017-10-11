@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './post.css';
 import { getPosts, setOrderBy, createNewPost } from './actions';
-import SinglePost from 'components/SinglePost';
+import SinglePost from 'containers/PostItem';
 import * as Utils from 'utils';
 import SortBySelector from './selectors'
 import NewPostForm from '../../components/Form'
@@ -21,43 +21,30 @@ class Posts extends Component {
   handleVoteClick = (e, { value }) => {
     this.props.setOrderBy(value)
   }
-
-  handleAddClick = (e,data) =>{
-    console.log('button data', data);
-  }
+  // handleAddClick = (e,data) =>{
+  //   console.log('button data', data);
+  // }
   handleOpen = () => {
-
     this.setState({ modalOpen: true })
   }
   handleClose = () => this.setState({ modalOpen: false })
-
   handleNewPost = (values)=>{
-
-    // console.log(values);
-    this.props.createNewPost(values,()=>{
-      this.props.history.push('/')
-    })
+    // console.log('PROPS ',this.props);
+    this.props.createNewPost(values,
+      // ()=>this.props.history.push('/')
+      ()=>{
+        this.props.getPosts()
+        this.props.history.push('/')
+      }
+    )
   }
   render() {
-    const {posts, categories } = this.props;
-
+    const {posts, categories,history } = this.props;
     return (
       <Segment >
         <Menu attached="top">
           <Menu.Item >
-            <Modal trigger={<Button onClick={this.handleOpen}>Add Post</Button>} scrolling
-              open={this.state.modalOpen}
-              onClose={this.handleClose}//TODO need to handle de onclose so that when a post is submitted you close this
-
-              // closeOnEscape={closeOnEscape}
-              // closeOnRootNodeClick={closeOnRootNodeClick}
-              // onClose={this.close}
-            >
-            <Modal.Header>Add Post</Modal.Header>
-            <Modal.Content >
-              <NewPostForm categories={categories} onSubmit={this.handleNewPost} />
-            </Modal.Content>
-          </Modal>
+            <Button onClick={this.handleOpen}>Add Post</Button>
           </Menu.Item>
           <Menu.Menu position="right">
             <Dropdown item text="Sort By" icon="sort">
@@ -72,8 +59,23 @@ class Posts extends Component {
             </Dropdown>
           </Menu.Menu>
         </Menu>
-        {posts.map(post => <SinglePost key={post.id} post={post} />)}
+        <Segment  color="grey" attached className="postList">
+          {posts.map(post => <SinglePost key={post.id} post={post} history={history} />)}
+        </Segment>
+        {/* <Modal trigger={<Button onClick={this.handleOpen}>Add Post</Button>} scrolling */}
+        <Modal  scrolling
+          open={this.state.modalOpen}
+          onClose={this.handleClose}//TODO need to handle de onclose so that when a post is submitted you close this
+          closeOnEscape={false}
+          closeOnRootNodeClick={false}
+        >
+        <Modal.Header>Add Post</Modal.Header>
+        <Modal.Content >
+          <NewPostForm categories={categories} onSubmit={this.handleNewPost} onCancel={this.handleClose} />
+        </Modal.Content>
+      </Modal>
       </Segment>
+
     )
   }
 }

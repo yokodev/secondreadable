@@ -1,5 +1,5 @@
 .post{
-  width: 100%;
+  min-width: 630px;
   display: flex;
 }
 .post-rater{
@@ -12,10 +12,10 @@
   padding-left: 10px;
   align-self: center;
   margin-left: 8px;
-  
+
 }
 .post-image .image{
-  background-color: lightgrey;
+  /*background-color: lightgrey;*/
 }
 .post-content {
   /*background-color: rgb(139, 222, 1);*/
@@ -41,8 +41,7 @@
 .post-submitted{
   text-transform: capitalize;
   color: grey;
-  margin-top: -12px
-  /*align-self: flex-end;*/
+  margin-top: -8px
 
 }
 
@@ -53,10 +52,18 @@
 
 
 .post-comments{
-  margin-top: -15px;
-  color: red;
-  font-weight: bold;
+  display: flex;
+  justify-content: flex-end;
 }
 .post-comments span{
+}
 
+.post-comments .post-comments-popup{
+  background-color: white;
+  color: white
+}
+
+.postContent {
+  width: 700px;
+  align-self: center;
 }

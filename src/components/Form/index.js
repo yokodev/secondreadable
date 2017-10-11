@@ -8,11 +8,15 @@ class ReadForm extends Component{
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
    handleSubmit = () => {
-
     //  console.log(this.state);
      this.setState({ body: '',author: '',category: '', title: '' })
      this.props.onSubmit(this.state)
  }
+  handleCancel = (e) =>{
+    e.preventDefault()
+    console.log(this.props);
+    this.props.onCancel()
+  }
   catToOptions = categories =>{
     let options=[]
     categories && categories.length>0
@@ -27,7 +31,7 @@ class ReadForm extends Component{
     // console.log(`props en new form`,this.props);
     const catOptions = this.catToOptions(this.props.categories)
     const { body, author, category, title } = this.state
-    console.log(catOptions);
+    console.log('render en form');
 
     return(
       <Form onSubmit={this.handleSubmit} widths='equal'>
@@ -37,6 +41,7 @@ class ReadForm extends Component{
         <Form.Select label='Category' name="category" value={category}
           options={catOptions} placeholder='Categories' required onChange={this.handleChange} />
         <Button type='submit'>Submit</Button>
+        <Button  onClick={this.handleCancel} formNoValidate >Cancel</Button>
       </Form>
     )
   }

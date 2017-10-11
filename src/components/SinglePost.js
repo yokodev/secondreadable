@@ -9,13 +9,9 @@ import { connect } from 'react-redux'
 
 class SinglePost extends Component {
   handleLinkClicked = postId => {
-    // this.props.dispatch(Actions.genPostDetail(postId))
-    // console.log(`este es el postid `,postId);
     this.props.dispatch(Actions.genPostDetail(postId))
   }
   render() {
-    // let id, timestamp, title, body, author, category, voteScore, deleted
-    // console.log(`lasprops en singlePost: `, this.props)
     let { id, title, timestamp, author, voteScore, category } = this.props.post
     return (
       <Segment>
@@ -35,7 +31,7 @@ class SinglePost extends Component {
             <p className="post-submitted">
               {`submitted ${Util.timeSince(timestamp)} by `} <span> {author} </span>
             </p>
-            <p className="post-comments">{`805 comments `}</p>
+            <p className="post-comments">{`805 comments `} <span> {'delete'} </span></p>
           </div>
         </div>
       </Segment>
