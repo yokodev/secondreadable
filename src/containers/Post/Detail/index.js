@@ -6,12 +6,13 @@ import * as Util from 'utils'
 import { Segment, Image } from 'semantic-ui-react'
 import Rater from 'components/Rater'
 import image from 'assets/images/message.png'
-import Comments from 'components/Comments'
+// import Comments from 'components/Comments'
+import Comments from 'containers/Comments'
 // import './PostDetail.css'
 
 class PostDetail extends Component {
   componentDidMount() {
-    console.log(`this props on detail componentDidMount: `,this.props)
+    // console.log(`this props on detail componentDidMount: `,this.props)
     this.props.dispatch(Actions.getPostDetail(this.props.match.params.id))
   }
 

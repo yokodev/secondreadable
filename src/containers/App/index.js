@@ -4,12 +4,12 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { getCategories } from 'containers/Categories/actions';
 import CatToArraySelector from 'containers/Categories/selectors'
-import PostDetail from 'containers/Detail';
-// import * as Utils from 'utils';
+import PostDetail from 'containers/Post/Detail';
 import Layout from 'components/Layout'
 import Posts from 'containers/Posts'
-import NewPost from 'containers/NewPost'
-import NotFoundPage from 'containers/NotFoundPage'
+import NewPost from 'containers/Post/NewPost'
+import EditPost from 'containers/Post/EditPost'
+import NotFoundPage from 'components/NotFoundPage'
 
 class App extends Component {
 
@@ -18,7 +18,6 @@ class App extends Component {
   }
 
   render() {
-    // console.log('PROPS: ',this.props);
     const {categories}= this.props
     return (
       <Layout categories={categories} >
@@ -30,10 +29,10 @@ class App extends Component {
           <Route path="/newPost"
             render={(rprops) => <NewPost categories={categories} {...rprops} />}
           />
-          <Route path="/:cat/:id"
-            // render={(props) => ( <PostDetail {...props} /> )}
-            component={PostDetail}
+          <Route path="/editPost/:id"
+            render={(rprops) => <EditPost categories={categories} {...rprops} />}
           />
+          <Route path="/:cat/:id" component={PostDetail}/>
           <Route path="/:cat"
             render={(rprops) => <Posts categories={categories}{...rprops} />}
             />

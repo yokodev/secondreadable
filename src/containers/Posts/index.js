@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './post.css';
 import { getPosts, setOrderBy} from './actions';
-import SinglePost from 'containers/PostItem';
+import SinglePost from './PostItem';
 import * as Utils from 'utils';
 import SortBySelector from './selectors'
-import NewPostForm from '../../components/Form'
+import NewPostForm from 'components/Form'
 import {Segment, Menu,Dropdown, Button, Icon, Modal,Container, Grid } from 'semantic-ui-react'
 import { Link, NavLink, withRouter  } from 'react-router-dom';
 

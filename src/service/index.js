@@ -69,7 +69,6 @@ export const createNewPost = formValues =>{
     .then(response=>response.json())
     .then(data=> data)
     .catch(error=>{ console.log('Request Failed',error) })
-
 }
 
 export const deletePost = postId =>{
@@ -80,3 +79,15 @@ export const deletePost = postId =>{
   .then(data=> data)
   .catch(error=>{ console.log('Request Failed',error) })
 }
+
+///full detail
+
+export const getPostDetailByPostId = postId =>
+  fetch(`${url}/posts/${postId}`, headers)
+  .then(status)
+  .then(json)
+
+export const allCommentsByPostId = postId =>
+  fetch(`${url}/posts/${postId}/comments`, headers)
+    .then(json)
+    .then(status)

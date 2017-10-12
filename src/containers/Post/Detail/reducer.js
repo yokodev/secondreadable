@@ -11,6 +11,12 @@ function postDetail(state = {}, action ){
   switch (action.type) {
     case Action.RECEIVE_POST_DETAIL:
       return { ...state, ...action.postDetail }
+    case Action.GET_POST_DETAIL:
+      return { ...state, loading: true }
+    case Action.GET_POST_DETAIL_SUCCESS:
+      return { ...state, loading:false, ...action.postDetail }
+    case Action.GET_POST_DETAIL_FAILURE:
+      return { ...state, loading:false, error:action.error,id:action.postId }
     default:
       return state
   }

@@ -8,7 +8,7 @@ import { Comment,Form, Button, Header,Segment } from 'semantic-ui-react'
 
 
     <Comment>
-      <Comment.Avatar src='/assets/images/avatar/small/matt.jpg' />
+      <Comment.Avatar src='https://picsum.photos/100/100' />
       <Comment.Content>
         <Comment.Author as='a'>Matt</Comment.Author>
         <Comment.Metadata>

@@ -3,7 +3,7 @@ import { routerReducer } from 'react-router-redux';
 
 import categories from '../Categories/reducer'
 import posts from '../Posts/reducer'
-import postDetail from '../Detail/reducer'
+import postDetail from '../Post/Detail/reducer'
 // import comments from './comments'
 
 
