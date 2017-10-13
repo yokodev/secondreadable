@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link,withRouter } from 'react-router-dom'
 import * as Util from 'utils'
 import { connect } from 'react-redux';
-import { deletePost, getPosts }  from 'containers/Posts/actions'
+import { deletePost }  from 'containers/Posts/actions'
 import './postItem.css'
 import { Segment, Image, Dimmer, Loader } from 'semantic-ui-react'
 import Rater from 'components/Rater'
@@ -19,11 +19,9 @@ class PostItem extends Component {
     // this.props.dispatch(Actions.genPostDetail(postId))
   }
   deletePost = id =>{
-    console.log('deleting this id ',id);
-    console.log(this.props);
     this.setState({loading:true})
     this.props.deletePost(id,()=>{
-      console.log('regres0 del callback ',id);
+      // console.log('regres0 del callback ',id);
       this.setState({loading:false})
       this.props.history.push('/')
     })
@@ -33,7 +31,7 @@ class PostItem extends Component {
   }
   render() {
     // let id, timestamp, title, body, author, category, voteScore, deleted
-    console.log(`lasprops en singlePost: `, this.props)
+    // console.log(`lasprops en singlePost: `, this.props)
     let { id, title, timestamp, author, voteScore, category } = this.props.post
     let {loading} = this.state
     return (
@@ -60,7 +58,6 @@ class PostItem extends Component {
                 {`submitted ${Util.timeSince(timestamp)} by `} <span> {author} </span>
               </p>
               <div className="post-comments">
-                {/* <ToolBar editHandler={this.editPost(id)} deleteHandler={this.deletePost(id)} /> */}
                 <ToolBar editHandler={()=>this.editPost(id)} deleteHandler={()=>this.deletePost(id)} />
               </div>
             </div>

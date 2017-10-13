@@ -3,12 +3,11 @@ import * as API from 'service/'
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES'
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS'
-export const RECEIVE_POST_DETAIL = 'RECEIVE_POST_DETAIL'
-export const GENERATE_POST_DETAIL = 'GENERATE_POST_DETAIL'
-export const GENERATE_OWN_POST_DETAIL = 'GENERATE_OWN_POST_DETAIL'
+// export const RECEIVE_POST_DETAIL = 'RECEIVE_POST_DETAIL'
+// export const GENERATE_POST_DETAIL = 'GENERATE_POST_DETAIL'
+// export const GENERATE_OWN_POST_DETAIL = 'GENERATE_OWN_POST_DETAIL'
 
 export const POST_DELETED = 'POST_DELETED'
-
 
 // this is the sorting part
 export const SET_ORDER_BY = 'SET_ORDER_BY'
@@ -42,8 +41,6 @@ export function getPostsByCat(thisCategory) {
   }
 }
 
-
-
 export function deletePost(postId,callback) {
   return function(dispatch){
     return API.deletePost(postId)
@@ -62,10 +59,3 @@ export function postDeleted(postId){
     postId
   }
 }
-
-// export function getPostsByCat(thisCategory) {
-//   return function(dispatch){
-//     return API.getPostsByCategory(thisCategory)
-//       .then(posts=>dispatch(receivePosts(posts)))
-//   }
-// }

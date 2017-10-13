@@ -33,7 +33,7 @@ class ReadForm extends Component{
     console.log(`props en render new Gralform `,this.props);
     const catOptions = this.catToOptions(this.props.categories)
     const {formTitle} = this.props
-    const { body, author, category, title } = this.state
+    const { title, body, category } = this.state
 
     return(
       <Segment raised size="large" >
@@ -43,7 +43,6 @@ class ReadForm extends Component{
       <Segment raised size="large" >
       <Form onSubmit={this.handleSubmit} widths='equal'>
         <Form.Input label="Title" placeholder='Title' name='title' value={title} required onChange={this.handleChange}  />
-        <Form.Input label="Author" placeholder='Author' name='author' value={author} required onChange={this.handleChange} />
         <Form.TextArea label='Body' name="body" placeholder='Post Body ' required value={body} onChange={this.handleChange} />
         <Form.Select label='Category' name="category" value={category}
           options={catOptions} placeholder='Categories' required onChange={this.handleChange} />

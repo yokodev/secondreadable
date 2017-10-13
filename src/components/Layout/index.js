@@ -1,8 +1,5 @@
 import React from 'react';
-
 import './layout.css';
-// import * as actions from 'containers/Categories/actions';
-
 import Header from '../Header';
 
 function Layout(props) {

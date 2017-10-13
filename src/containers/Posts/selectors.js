@@ -16,19 +16,28 @@ const arrayFromObject = (objectToConvert, idsArray) => {
   return result
 }
 
-const sortedBy = ( posts=[], sortItemsBy) =>{
+export const postsArrayFromObject = createSelector(
+	postsSelector,
+	postsIdsSelector,
+	arrayFromObject
+)
+
+const willSortBy = ( posts=[], sortItemsBy) =>{
   let postToShow = []
-  sortItemsBy && posts.length>0 ? postToShow = posts.sort(sortBy(-sortItemsBy)) : postToShow = posts
+  sortItemsBy && posts.length>0 ? postToShow = posts.sort(sortBy(`-${sortItemsBy}`)) : postToShow = posts
+  // sortItemsBy && posts.length>0 ? postToShow = posts.sort(sortBy(-"voteScore")) : postToShow = posts
+  // sortItemsBy && posts.length>0 ? postToShow = posts.sort(sortBy("voteScore")) : postToShow = posts
+  // sortItemsBy && posts.length>0 ? postToShow = posts.sort(sortBy("-timestamp")) : postToShow = posts
+  // sortItemsBy && posts.length>0 ? postToShow = posts.sort(sortBy("timestamp")) : postToShow = posts
   return postToShow;
 }
 
-const itemsSortedBy = (objectToConvert, idsArray,sortItemsBy) =>{
-  return sortedBy(arrayFromObject(objectToConvert,idsArray),sortItemsBy)
-}
+// const itemsSortedBy = (objectToConvert, idsArray,sortItemsBy) =>{
+//   return willSortBy(arrayFromObject(objectToConvert,idsArray),sortItemsBy)
+// }
 
 export default createSelector(
-	postsSelector,
-	postsIdsSelector,
+	postsArrayFromObject,
 	orderBySelector,
-	itemsSortedBy
+	willSortBy
 )

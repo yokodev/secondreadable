@@ -2,6 +2,8 @@ import moment from 'moment'
 import sortBy from 'sort-by'
 import capitalize from 'lodash.capitalize'
 import { v4 } from 'node-uuid'
+// import {casual} from 'casual'
+var faker = require('faker');
 /*
 ************************************
 Unix Timestamp (milliseconds) 1.0.0+
@@ -76,6 +78,7 @@ export function prepareNewPost(formValues){
   formValues['id']= generateUid();
   formValues['timestamp']= Date.now();
   formValues['voteScore']= 1;
+  formValues['author']= faker.name.findName();
   // formValues['deleted']= false;
   return formValues
 }

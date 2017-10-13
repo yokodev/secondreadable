@@ -1,6 +1,6 @@
 import React, {Component } from 'react'
-import { Button, Confirm } from 'semantic-ui-react'
-
+import {Icon, Button, Confirm } from 'semantic-ui-react'
+import './toolbar.css'
 class ToolBar extends Component{
 
   state = { open: false }
@@ -15,12 +15,13 @@ class ToolBar extends Component{
 
   render(){
     const {editHandler}= this.props
+    // minitinysmallmediumlargebighugemassive
     return(
         <div>
-          <Button.Group>
-            <Button icon='edit' onClick={editHandler} />
-            <Button icon='trash outline' color="red" onClick={this.show} />
-          </Button.Group>
+          <Icon.Group className='crud-toolbar' size='large'  >
+            <Icon link name='edit'  onClick={editHandler} />
+            <Icon link name='trash outline' color="red" onClick={this.show} />
+          </Icon.Group>
           <Confirm
             header='Delete post?'
             open={this.state.open}
@@ -33,3 +34,7 @@ class ToolBar extends Component{
 }
 
 export default ToolBar
+{/* <Button.Group size='mini' >
+  <Button icon='edit'  onClick={editHandler} />
+  <Button icon='trash outline' color="red" onClick={this.show} />
+</Button.Group> */}

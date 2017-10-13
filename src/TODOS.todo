@@ -1,0 +1,64 @@
+Readable:
+
+CurrentTODOS:
+  ☐ POSTS:
+    ☐ Orderby
+    ☐ Comments Count
+    ☐ Rater Working
+    ☐ Edit Posts
+  ☐ Detail:
+    ☐ List of Comments
+    ☐ Rater Working
+    ☐ Add Comment
+    ☐ Delete Comment
+    ☐ Comment Rater Working
+    ☐ Edit Comment
+
+Is application state managed by Redux?:
+Does application state update correctly?:
+
+Application Functionality:
+☐ Listed posts are displayed with title, author, number of comments, current score, and a voting mechanism to upvote or downvote the post. Posts should have buttons or links for editing or deleting that post.
+☐ The voting mechanism works and correctly displays the new vote score after clicking.
+☐ List pages (root or category) include a mechanism for sorting by date or by score (at a minimum) and the sort works properly.
+
+Does the post detail page have desired functionality?:
+☐ Post is displayed with title, body, author, number of comments, current score and voting mechanism. Post should have buttons or links for editing or deleting that post.
+☐ Listed comments are displayed with author, current score, and a voting mechanism to upvote or downvote the comment. Comments should have buttons or links for editing or deleting that comment.
+☐ The voting mechanism works and correctly displays the new vote score after clicking for both the post and comments.
+☐ A mechanism for adding a new comment is visible on the detail page and functional.
+
+Can users add new posts?:
+
+Can users add comments?:
+☐ Application has a form for adding comments to a post. Submitting the form properly adds the comment to the correct post.
+
+Can users edit posts/comments?:
+☐ Edit buttons for posts/comments open a form with existing data pre-populated. Submitting the form correctly updates the data for the comment/post.
+
+Can users delete posts/comments?:
+☐ A mechanism for deleting posts and comments exists.
+  Clicking the button/link correctly removes the post/comment from list view and makes post inaccessible at it's URL.
+
+Is the application navigable?:
+
+
+
+ctrl-d: toggle completion of the task
+ctrl-shift-a: move all completed tasks to the archive section
+alt-c: cancel the selected tasks
+ctrl-shift-s: add/update timestamp for current task
+
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+Archive:
+  ✔ Most application state is managed by the Redux store. State-based props are mapped from the store rather than stored as component state. @done(2017-10-12 17:30)
+  ✔ Form inputs and controlled components may have some state handled by the component. @done(2017-10-12 17:30)
+  ✔ Updates are triggered by dispatching actions to reducers. @done(2017-10-12 17:30)
+  ✔ Reducers and actions are written properly and correctly return updated state to the store. @done(2017-10-12 09:06)
+  ✔ List posts link to the detail page for that post. @done(2017-10-12 09:03) @project(Application Functionality)
+  ✔ All posts are listed at the root. @done(2017-10-12 09:03) @project(Application Functionality)
+  ✔ All posts for a category are listed at /:category @done(2017-10-12 09:04) @project(Application Functionality)
+  ✔ Post detail is available at /:category/:post_id @done(2017-10-12 17:31)
+  ✔ All comments for a post are displayed below the post body. @done(2017-10-12 17:34)
+  ✔ Application has a form for creating a new post. Submitting the form properly adds the post to the correct category. @done(2017-10-12 17:35)
+  ✔ User is able to navigate between categories, main page and post detail pages without typing address in the address bar. @done(2017-10-12 09:08)

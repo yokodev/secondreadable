@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './post.css';
-import { getPosts, setOrderBy} from './actions';
+import { getPosts, setOrderBy, getPostsByCat} from './actions';
 import SinglePost from './PostItem';
 import * as Utils from 'utils';
 import SortBySelector from './selectors'
@@ -16,7 +16,9 @@ class Posts extends Component {
   }
 
   componentDidMount() {
-    this.props.getPosts();
+    const {match:{params:{cat}}, getPosts, getPostsByCat }=this.props
+    cat?getPostsByCat(cat):getPosts()
+
   }
 
   handleVoteClick = (e, { value }) => {
@@ -30,12 +32,7 @@ class Posts extends Component {
   }
   handleClose = () => this.setState({ modalOpen: false })
   handleNewPost = (values)=>{
-    // this.props.createNewPost(values,
-    //   ()=>{
-    //     this.props.getPosts()
-    //     this.props.history.push('/')
-    //   }
-    // )
+
   }
   render() {
     const {posts, categories,history } = this.props;
@@ -81,16 +78,15 @@ class Posts extends Component {
     )
   }
 }
-
-
 // function mapStateToProps({
 //   posts: { byId: pById, allIds: allPIds, orderBy = 'voteScore' },
 // }) {
-function mapStateToProps(state) {
+function mapStateToProps(state,ownProps) {
+  console.log('ownProps:', ownProps);
   return {
     // posts: Utils.itemsSortedBy(pById, allPIds, orderBy)
     posts: SortBySelector(state)
   }
 }
 
-export default connect(mapStateToProps, {getPosts, setOrderBy})(Posts);
+export default connect(mapStateToProps, {getPostsByCat, getPosts, setOrderBy})(Posts);

@@ -9,33 +9,24 @@ function createNewPosts(newPosts){
   return { byId, allIds }
 }
 
-// function genPostDetail(state={},postId){
-//   let postDetail ;
-//   state.byId ? postDetail = state.byId[postId]:postDetail={}
-//   return postDetail ? {postDetail}: {id:postId, title: "State was empty on post reducer"}
-// }
+// const initialState = { orderBy:'voteScore'}
+const initialState = { orderBy:'timestamp'}
 
-const initialState = { orderBy:'voteScore'}
 function posts(state = initialState, action ){
   switch (action.type) {
     case Action.RECEIVE_POSTS:
       return { ...state, ...createNewPosts(action.posts) }
-    // case Action.GENERATE_POST_DETAIL:
-    //   return { ...state, ...genPostDetail(state, action.postId) }
-    // case Action.RECEIVE_POST_DETAIL:
-    //   return { ...state, ...{postDetail:action.postDetail} }
     case Action.SET_ORDER_BY:
-      // console.log('stado: ',state);
-      return {...state, orderBy:action.sortBy }
+      console.log('setting orderBy: ',state);
+      return   Object.assign({}, state, {orderBy:action.sortBy})
       // return Object.assign({},state,{orderBy:action.sortBy})
     case Action.POST_DELETED:
-      let istado= {...state}
-      console.log('stado en POST_DELETED: ',state);
-      console.log('PAYLOAD en POST_DELETED: ',action);
-      console.log('boy a borrar en POST_DELETED: ',action.postId);
-      console.log('resultado en POST_DELETED: ',omit(istado,action.postId));
+      // let istado= {...state}
+      // console.log('stado en POST_DELETED: ',state);
+      // console.log('PAYLOAD en POST_DELETED: ',action);
+      // console.log('boy a borrar en POST_DELETED: ',action.postId);
+      // console.log('resultado en POST_DELETED: ',omit(istado,action.postId));
       return  omit(state,action.postId)
-      // return Object.assign({},state,{orderBy:action.sortBy})
     default:
       return state
   }
