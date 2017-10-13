@@ -3,20 +3,23 @@ import {connect} from 'react-redux'
 import { Loader, Dimmer } from 'semantic-ui-react'
 import CatToArraySelector from 'containers/Categories/selectors'
 import Form from 'components/Form'
-import {createNewPost} from './actions'
+import {editPost,} from './actions'
+import {getPostDetail} from '../Detail/actions'
 
 
-class AddPost extends Component{
+class EditPost extends Component{
 
   state={
     loading:false
   }
 
-   createNewPost = (data) => {
-     console.log('creating new Post with this props en createnewpost: ',this.props);
+   onEditPost = (data,other) => {
+     console.log('edit  Post with this props en Editpost: ',this.props);
      console.log('data from form: ',data);
+     let {id, state:{body,title}}=data
      this.setState({loading:true})
-     this.props.dispatch(createNewPost(data, ()=>{
+
+     this.props.dispatch(editPost({id,title,body}, ()=>{
        this.setState({loading:false})
        this.props.history.push('/')
        }
@@ -26,16 +29,21 @@ class AddPost extends Component{
     // console.log('onCancel fired ',this.props);
     this.props.history.push('/')
   }
+  loadPostData = ()=>{
+    console.log('edit  Post with this props en Editpost: ',this.props);
+    console.log(`loading data for form `);
+  }
 
   render(){
-    // console.log(`props en new form`,this.props);
+    // console.log(`props en EDIT form`,this.props)
+    let {location:{state:{postToEdit}},categories}=this.props
 
     return(
       <div>
-        <Dimmer active={false}>
+        <Dimmer active={this.state.loading}>
          <Loader />
        </Dimmer>
-       <Form  categories={this.props.categories} formTitle="Add New Post" onSubmit={this.createNewPost} onCancel={this.onCancel} />
+       <Form edit={postToEdit} categories={categories} formTitle="Edit Post" onSubmit={this.onEditPost} onCancel={this.onCancel} />
       </div>
 
     )
@@ -43,4 +51,4 @@ class AddPost extends Component{
 }
 const mapStateToProps= (state)=>({categories:CatToArraySelector(state)})
 
-export default connect(mapStateToProps)(AddPost)
+export default connect(mapStateToProps)(EditPost)

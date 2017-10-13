@@ -91,3 +91,38 @@ export const allCommentsByPostId = postId =>
   fetch(`${url}/posts/${postId}/comments`, headers)
     .then(json)
     .then(status)
+
+//**UPVOTE POST**/
+export const voteOnPost = (postId,upOrDownVote) =>{
+  let {headers} =headerPost
+  return fetch(`${url}/posts/${postId}`,{
+    method: "post",
+    headers,
+    body:JSON.stringify({"option":upOrDownVote})
+  })
+  .then(response=>response.json())
+  .then(data=> data)
+  .catch(error=>{ console.log('Request Failed',error) })
+}
+//**UPVOTE POST**/
+
+//**EDITPOST**/
+export const editPost = ({id,title,body}) =>{
+  let {headers} =headerPost
+  return fetch(`${url}/posts/${id}`,{
+    method: "put",
+    headers,
+    body:JSON.stringify({title, body})
+  })
+  .then(response=>response.json())
+  .then(data=> data)
+  .catch(error=>{ console.log('Request Failed',error) })
+}
+//**EDITPOST**/
+
+// PUT /posts/:id
+//       USAGE:
+//         Edit the details of an existing post
+//       PARAMS:
+//         title - String
+//         body - String

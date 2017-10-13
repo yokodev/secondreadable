@@ -9,23 +9,27 @@ function createNewPosts(newPosts){
   return { byId, allIds }
 }
 
-// const initialState = { orderBy:'voteScore'}
-const initialState = { orderBy:'timestamp'}
+
+const initialState = { orderBy:'voteScore'}
+// const initialState = { orderBy:'timestamp'}
 
 function posts(state = initialState, action ){
   switch (action.type) {
     case Action.RECEIVE_POSTS:
       return { ...state, ...createNewPosts(action.posts) }
     case Action.SET_ORDER_BY:
-      // return   Object.assign({}, state, {orderBy:action.sortBy})
        return {...state, orderBy:action.sortBy }
     case Action.POST_DELETED:
-      // let istado= {...state}
-      // console.log('stado en POST_DELETED: ',state);
-      // console.log('PAYLOAD en POST_DELETED: ',action);
-      // console.log('boy a borrar en POST_DELETED: ',action.postId);
-      // console.log('resultado en POST_DELETED: ',omit(istado,action.postId));
       return  omit(state,action.postId)
+    case Action.SET_POST_RATE:
+      return  {...state, loading:true}
+    case Action.SET_POST_RATE_SUCCESS:
+      let post = action.response
+      return  { ...state, loading:false,
+        byId:{ ...state.byId, [post.id]: post }
+      }
+    case Action.SET_POST_RATE_FAILURE:
+    return  {...state, loading:false, error:action.error }
     default:
       return state
   }

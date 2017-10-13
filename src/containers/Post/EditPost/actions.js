@@ -1,11 +1,12 @@
 import * as API from 'service/'
 
-export const ADD_POST = 'ADD_POST'
+export const EDIT_POST = 'readable/Post.Edit/EDIT_POST'
+export const EDIT_POST_SUCCESS = 'readable/Post.Edit/EDIT_POST_SUCCESS'
+export const EDIT_POST_FAILURE = 'readable/Post.Edit/EDIT_POST_FAILURE'
 
-export const UPDATE_POST = 'UPDATE_POST'
-export const EDIT_POST = 'EDIT_POST'
-
-
+export const editPostAction =()=>({
+  type:EDIT_POST
+})
 
 export function createNewPost(newPost,callback) {
   return function(dispatch){
@@ -18,24 +19,16 @@ export function createNewPost(newPost,callback) {
   }
 }
 
-export function editPost(postId,callback) {
-  return function(dispatch){
-    API.createNewPost(postId)
-    .then((data)=>{
-      console.log(`Request succedeed`,data)
-      callback()
-    })
-  }
+export const editPost = (postData,callback)=>dispatch=>{
+  dispatch(editPostAction)
+  return API.editPost(postData)
+    .then(
+      response=> {dispatch({type:EDIT_POST_SUCCESS, response}); callback()},
+      error=>{ dispatch({type:EDIT_POST_FAILURE, error}); throw error}
+    )
+
 }
 
 //
-// PUT /posts/:id
-//       USAGE:
-//         Edit the details of an existing post
-//       PARAMS:
-//         title - String
-//         body - String
+
 //
-// GET /posts/:id
-//       USAGE:
-//         Get the details of a single post

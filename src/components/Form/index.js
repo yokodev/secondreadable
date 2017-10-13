@@ -3,17 +3,26 @@ import { Button, Form, Segment, Header } from 'semantic-ui-react'
 import * as Utils from 'utils'
 
 
-class ReadForm extends Component{
-   state = {}
+class GralForm extends Component{
+
+   componentDidMount(){
+    console.log(`this props componentDidMount`,this.props)
+    let {edit}=this.props
+    edit && this.setState({edit:true,title:edit.title, body:edit.body, category:edit.category })
+   }
+
+   state = {edit:false, title:''}
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
    handleSubmit = () => {
+    //  console.log('props en handleSubmit en  GralForm component: ',this.props.edit.id);
+     this.props.edit
+     ? this.props.onSubmit({state:this.state, id:this.props.edit.id})
+     : this.props.onSubmit(this.state)
      this.setState({ body: '',author: '',category: '', title: '' })
+  }
 
-     console.log('props en handleSubmit en  GralForm component: ',this.props);
-    this.props.onSubmit(this.state)
- }
   handleCancel = (e) =>{
     console.log('handleCancel GralForm ',this.props);
     this.props.onCancel()
@@ -33,7 +42,8 @@ class ReadForm extends Component{
     console.log(`props en render new Gralform `,this.props);
     const catOptions = this.catToOptions(this.props.categories)
     const {formTitle} = this.props
-    const { title, body, category } = this.state
+    const { title, body, category,edit } = this.state
+
 
     return(
       <Segment raised size="large" >
@@ -44,7 +54,7 @@ class ReadForm extends Component{
       <Form onSubmit={this.handleSubmit} widths='equal'>
         <Form.Input label="Title" placeholder='Title' name='title' value={title} required onChange={this.handleChange}  />
         <Form.TextArea label='Body' name="body" placeholder='Post Body ' required value={body} onChange={this.handleChange} />
-        <Form.Select label='Category' name="category" value={category}
+        <Form.Select label='Category' name="category" value={category} disabled={edit}
           options={catOptions} placeholder='Categories' required onChange={this.handleChange} />
         <Button type='submit'>Submit</Button>
         <Button  onClick={this.handleCancel} formNoValidate >Cancel</Button>
@@ -55,4 +65,4 @@ class ReadForm extends Component{
   }
 }
 
-export default ReadForm
+export default GralForm

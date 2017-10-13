@@ -1,6 +1,6 @@
 import React, {Component } from 'react'
-import {Icon, Button, Confirm } from 'semantic-ui-react'
-import './toolbar.css'
+import { Button, Confirm } from 'semantic-ui-react'
+
 class ToolBar extends Component{
 
   state = { open: false }
@@ -15,11 +15,12 @@ class ToolBar extends Component{
 
   render(){
     const {editHandler}= this.props
-    // minitinysmallmediumlargebighugemassive
     return(
         <div>
-            <Icon link name='edit'  onClick={editHandler} />
-            <Icon link name='trash outline' color="red" onClick={this.show} />
+          <Button.Group>
+            <Button icon='edit' onClick={editHandler} />
+            <Button icon='trash outline' color="red" onClick={this.show} />
+          </Button.Group>
           <Confirm
             header='Delete post?'
             open={this.state.open}
@@ -32,7 +33,3 @@ class ToolBar extends Component{
 }
 
 export default ToolBar
-{/* <Button.Group size='mini' >
-  <Button icon='edit'  onClick={editHandler} />
-  <Button icon='trash outline' color="red" onClick={this.show} />
-</Button.Group> */}

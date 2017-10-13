@@ -2,9 +2,9 @@ Readable:
 
 CurrentTODOS:
   ☐ POSTS:
-    ☐ Orderby
+    ✔ Orderby @done(2017-10-13 11:35) @project(CurrentTODOS / ☐ POSTS)
     ☐ Comments Count
-    ☐ Rater Working
+    ✔ Rater Working @done(2017-10-13 11:35) @project(CurrentTODOS / ☐ POSTS)
     ☐ Edit Posts
   ☐ Detail:
     ☐ List of Comments
@@ -19,8 +19,6 @@ Does application state update correctly?:
 
 Application Functionality:
 ☐ Listed posts are displayed with title, author, number of comments, current score, and a voting mechanism to upvote or downvote the post. Posts should have buttons or links for editing or deleting that post.
-☐ The voting mechanism works and correctly displays the new vote score after clicking.
-☐ List pages (root or category) include a mechanism for sorting by date or by score (at a minimum) and the sort works properly.
 
 Does the post detail page have desired functionality?:
 ☐ Post is displayed with title, body, author, number of comments, current score and voting mechanism. Post should have buttons or links for editing or deleting that post.
@@ -51,6 +49,8 @@ ctrl-shift-s: add/update timestamp for current task
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+  ✔ The voting mechanism works and correctly displays the new vote score after clicking. @done(2017-10-13 11:34)
+  ✔ List pages (root or category) include a mechanism for sorting by date or by score (at a minimum) and the sort works properly. @done(2017-10-13 11:34)
   ✔ Most application state is managed by the Redux store. State-based props are mapped from the store rather than stored as component state. @done(2017-10-12 17:30)
   ✔ Form inputs and controlled components may have some state handled by the component. @done(2017-10-12 17:30)
   ✔ Updates are triggered by dispatching actions to reducers. @done(2017-10-12 17:30)

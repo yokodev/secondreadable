@@ -9,10 +9,12 @@ import Rater from 'components/Rater'
 import image from 'assets/images/snoo-head.jpg'
 import {Icon, Label} from 'semantic-ui-react'
 import ToolBar from 'components/ToolBar'
+import {setPostRate} from '../actions'
 
 class PostItem extends Component {
 
   state={loading:false}
+
   getDetail = postId => {
     console.log(this.props)
     console.log(`este es el postid `,postId);
@@ -27,7 +29,19 @@ class PostItem extends Component {
     })
   }
   editPost = id=>{
+    this.props.history.push(`/editPost/${id}`,{postToEdit:this.props.post})
+    // console.log(this.props)
     console.log('editing this id ',id);
+  }
+  rateUp = ()=>{
+    let { post:{id}, setPostRate }=this.props
+    console.log('rateUP enPostItem con postID: ',id);
+    setPostRate(id,'upVote')
+  }
+  rateDown = ()=>{
+    let { post:{id}, setPostRate }=this.props
+    console.log('rateDOWN enPostItem con postID: ',id);
+    setPostRate(id,'downVote')
   }
   render() {
     // let id, timestamp, title, body, author, category, voteScore, deleted
@@ -42,7 +56,7 @@ class PostItem extends Component {
         <Label  as='a' color='teal' ribbon='right'  > <Icon name='comments' />{`805 comments `}</Label>
         <div className="post">
           <div className="post-rater">
-            <Rater voteScore={voteScore} />
+            <Rater voteScore={voteScore} rateUp={this.rateUp} rateDown={this.rateDown} />
           </div>
           <div className="post-image">
             <Image src={image} size="tiny" />
@@ -67,5 +81,5 @@ class PostItem extends Component {
   }
 }
 
-export default withRouter(connect(null,{deletePost})(PostItem))
+export default withRouter(connect(null,{deletePost,setPostRate})(PostItem))
 // export default PostItem
