@@ -4,7 +4,7 @@ import './post.css';
 import { getPosts, setOrderBy, getPostsByCat} from './actions';
 import SinglePost from './PostItem';
 import * as Utils from 'utils';
-import SortBySelector from './selectors'
+import {orderByPosts, postsArrayFromObject } from './selectors'
 import NewPostForm from 'components/Form'
 import {Segment, Menu,Dropdown, Button, Icon, Modal,Container, Grid } from 'semantic-ui-react'
 import { Link, NavLink, withRouter  } from 'react-router-dom';
@@ -48,7 +48,7 @@ class Posts extends Component {
           <Menu.Menu position="right">
             <Dropdown item text="Sort By" icon="sort">
               <Dropdown.Menu>
-                <Dropdown.Item value="votescore" onClick={this.handleVoteClick}>
+                <Dropdown.Item value="voteScore" onClick={this.handleVoteClick}>
                   VoteScore
                 </Dropdown.Item>
                 <Dropdown.Item value="timestamp" onClick={this.handleVoteClick}>
@@ -82,10 +82,11 @@ class Posts extends Component {
 //   posts: { byId: pById, allIds: allPIds, orderBy = 'voteScore' },
 // }) {
 function mapStateToProps(state,ownProps) {
-  console.log('ownProps:', ownProps);
+  // console.log('ownProps:', ownProps);
+  // let Posts = postsArrayFromObject(state)
   return {
     // posts: Utils.itemsSortedBy(pById, allPIds, orderBy)
-    posts: SortBySelector(state)
+    posts: orderByPosts(state)
   }
 }
 

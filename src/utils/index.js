@@ -1,5 +1,5 @@
 import moment from 'moment'
-import sortBy from 'sort-by'
+// import sortBy from 'sort-by'
 import capitalize from 'lodash.capitalize'
 import { v4 } from 'node-uuid'
 // import {casual} from 'casual'
@@ -44,16 +44,15 @@ export const arrayFromObject = (objectToConvert, idsArray) => {
   return result
 }
 
-export const sortedBy = ( posts=[], sortItemsBy) =>{
-  let postToShow = []
-  sortItemsBy && posts.length>0 ? postToShow = posts.sort(sortBy(sortItemsBy)) : postToShow = posts
-  return postToShow;
-}
+// export const sortedBy = ( posts=[], sortItemsBy) =>{
+//   let postToShow = []
+//   sortItemsBy && posts.length>0 ? postToShow = posts.sort(sortBy(sortItemsBy)) : postToShow = posts
+//   return postToShow;
+// }
 
-export const itemsSortedBy = (objectToConvert, idsArray,sortItemsBy) =>{
-  return sortedBy(arrayFromObject(objectToConvert,idsArray),sortItemsBy)
-}
-// export function itemsSortedBy(objectToConvert, idsArray){
+// export const itemsSortedBy = (objectToConvert, idsArray,sortItemsBy) =>{
+//   return sortedBy(arrayFromObject(objectToConvert,idsArray),sortItemsBy)
+// }
 
 export function separateLocation(location){
   let tokens = location.split('/')

@@ -18,10 +18,8 @@ class ToolBar extends Component{
     // minitinysmallmediumlargebighugemassive
     return(
         <div>
-          <Icon.Group className='crud-toolbar' size='large'  >
             <Icon link name='edit'  onClick={editHandler} />
             <Icon link name='trash outline' color="red" onClick={this.show} />
-          </Icon.Group>
           <Confirm
             header='Delete post?'
             open={this.state.open}

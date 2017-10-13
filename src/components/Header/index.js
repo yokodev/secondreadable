@@ -27,7 +27,7 @@ class Header extends Component {
             {categories.map(cat => (
               <NavLink  key={cat.name} to={`/${cat.path}`}
                 className="header-menu-item"
-                // activeClassName="header-menu-item-active"
+                activeClassName="header-menu-item-active"
                 onClick={() => this.handleLinkCliked(cat.name)}
               >
                 {cat.name}
@@ -40,4 +40,4 @@ class Header extends Component {
   }
 }
 
-export default connect()(Header)
+export default withRouter(connect()(Header))

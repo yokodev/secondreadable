@@ -17,9 +17,8 @@ function posts(state = initialState, action ){
     case Action.RECEIVE_POSTS:
       return { ...state, ...createNewPosts(action.posts) }
     case Action.SET_ORDER_BY:
-      console.log('setting orderBy: ',state);
-      return   Object.assign({}, state, {orderBy:action.sortBy})
-      // return Object.assign({},state,{orderBy:action.sortBy})
+      // return   Object.assign({}, state, {orderBy:action.sortBy})
+       return {...state, orderBy:action.sortBy }
     case Action.POST_DELETED:
       // let istado= {...state}
       // console.log('stado en POST_DELETED: ',state);
