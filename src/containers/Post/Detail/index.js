@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as Actions from './actions'
+import {commentsByPost}  from 'containers/Comments/actions'
+
 import * as Util from 'utils'
-import { Segment, Image } from 'semantic-ui-react'
+import { Segment, Image, Dimmer, Loader } from 'semantic-ui-react'
 import Rater from 'components/Rater'
 import image from 'assets/images/message.png'
 import Comments from 'containers/Comments'
@@ -10,8 +12,10 @@ import './detail.css'
 
 class PostDetail extends Component {
   componentDidMount() {
-    // console.log(`this props on detail componentDidMount: `,this.props)
+    console.log(`this props on detail componentDidMount: `,this.props)
     this.props.dispatch(Actions.getPostDetail(this.props.match.params.id))
+    this.props.dispatch(commentsByPost(this.props.match.params.id))
+
   }
 
   render() {
@@ -30,7 +34,8 @@ class PostDetail extends Component {
               <Rater voteScore={voteScore} />
             </div>
             <div className="post-image">
-              <Image shape="circular" src={image} size="tiny" />
+              <Image shape="circular" src="https://picsum.photos/100/100/?random" size="small" />
+              {/* <Image shape="circular" src="https://picsum.photos/100/100/?random" size="tiny" /> */}
             </div>
             <div className="post-content">
               <h2 className="post-title">{title}</h2>
@@ -43,12 +48,17 @@ class PostDetail extends Component {
           </div>
         </Segment>
         <Segment>
-          <Comments />
+          <Comments postId={id} />
         </Segment>
       </Segment>
 
     }else {
-			postToShow = null
+			postToShow =
+      <Segment>
+        <Dimmer active>
+          <Loader />
+        </Dimmer>
+      </Segment>
 		}
     return postToShow
   }
