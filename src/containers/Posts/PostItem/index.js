@@ -71,7 +71,7 @@ class PostItem extends Component {
               <p className="post-submitted">
                 {`submitted ${Util.timeSince(timestamp)} by `} <span> {author} </span>
               </p>
-              <div className="post-comments">
+              <div className="post-actions">
                 <ToolBar editHandler={()=>this.editPost(id)} deleteHandler={()=>this.deletePost(id)} />
               </div>
             </div>

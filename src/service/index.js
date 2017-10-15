@@ -21,43 +21,30 @@ function json(response) {
   return response.json()
 }
 
+/*********POSTS****************/
 export const getPosts = category => {
   let urlPosts = category ? `${url}/${category}/posts` : `${url}/posts`
   return fetch(urlPosts, headers)
     .then(status)
     .then(json)
 }
+/*********POSTS****************/
 
+/*********CATEGORIES****************/
 export const getCategories = () =>
   fetch(`${url}/categories`, headers)
     .then(status)
     .then(json)
+/*********CATEGORIES****************/
 
-export const getCommentsById = (postId) =>
-  fetch(`${url}/comments`, headers)
-    .then(status)
-    .then(json)
-
+/*********POSTbyCATEGORIES****************/
 export const getPostsByCategory = category =>
   fetch(`${url}/${category}/posts`, headers)
     .then(status)
     .then(json)
+/*********POSTbyCATEGORIES****************/
 
-export const getPostDetail = postId =>
-  fetch(`${url}/posts/${postId}`, headers)
-    .then(status)
-    .then(json)
-
-export const allCommentsByPost = postId =>
-  fetch(`${url}/posts/${postId}/comments`, headers)
-    .then(status)
-    .then(json)
-
-export const getCommentDetail = commentId =>
-  fetch(`${url}/comments/${commentId}`, headers)
-    .then(status)
-    .then(json)
-
+/********** CRUD POST*****************/
 export const createNewPost = formValues =>{
   let newPost= Utils.prepareNewPost(formValues)
   let {headers} =headerPost
@@ -70,42 +57,6 @@ export const createNewPost = formValues =>{
     .then(data=> data)
     .catch(error=>{ console.log('Request Failed',error) })
 }
-
-export const deletePost = postId =>{
-  let {headers} =headerPost
-  return fetch(`${url}/posts/${postId}`,
-    { method: "delete", headers })
-  .then(response=>response.json())
-  .then(data=> data)
-  .catch(error=>{ console.log('Request Failed',error) })
-}
-
-///full detail
-
-export const getPostDetailByPostId = postId =>
-  fetch(`${url}/posts/${postId}`, headers)
-  .then(status)
-  .then(json)
-
-export const allCommentsByPostId = postId =>
-  fetch(`${url}/posts/${postId}/comments`, headers)
-    .then(json)
-    .then(status)
-
-//**UPVOTE POST**/
-export const voteOnPost = (postId,upOrDownVote) =>{
-  let {headers} =headerPost
-  return fetch(`${url}/posts/${postId}`,{
-    method: "post",
-    headers,
-    body:JSON.stringify({"option":upOrDownVote})
-  })
-  .then(response=>response.json())
-  .then(data=> data)
-  .catch(error=>{ console.log('Request Failed',error) })
-}
-//**UPVOTE POST**/
-
 //**EDITPOST**/
 export const editPost = ({id,title,body}) =>{
   let {headers} =headerPost
@@ -119,10 +70,112 @@ export const editPost = ({id,title,body}) =>{
   .catch(error=>{ console.log('Request Failed',error) })
 }
 //**EDITPOST**/
+/*********--DELETE-POST--**************/
+export const deletePost = postId =>{
+  let {headers} =headerPost
+  return fetch(`${url}/posts/${postId}`,
+    { method: "delete", headers })
+  .then(response=>response.json())
+  .then(data=> data)
+  .catch(error=>{ console.log('Request Failed',error) })
+}
+/*********--DELETE-POST--**************/
 
-// PUT /posts/:id
-//       USAGE:
-//         Edit the details of an existing post
-//       PARAMS:
-//         title - String
-//         body - String
+ /*********LIST POST BY ID**********/
+export const getPostDetail = postId =>
+fetch(`${url}/posts/${postId}`, headers)
+.then(status)
+.then(json)
+/*********LIST POST BY ID**********/
+/********** CRUD POST*****************/
+
+///full detail
+
+export const getPostDetailByPostId = postId =>
+  fetch(`${url}/posts/${postId}`, headers)
+  .then(status)
+  .then(json)//TODO Im not sure if I'm using it...
+
+///full detail
+
+/*********-- CRUD-COMMENTS--**************/
+
+export const allCommentsByPostId = postId =>
+fetch(`${url}/posts/${postId}/comments`, headers)
+.then(status)
+.then(json)
+
+/*********COMMENTDETAIL****************/
+export const getCommentDetail = commentId =>
+fetch(`${url}/comments/${commentId}`, headers)
+.then(status)
+.then(json)
+/*********COMMENTDETAIL****************/
+
+/*********ADD-COMMENT****************/
+export const addNewComment = (postId, formValues) =>{
+  let newComment= Utils.prepareNewPost(postId,formValues)
+  let {headers} =headerPost
+  return fetch(`${url}/comments`,{
+    method: "post",
+    headers,
+    body:JSON.stringify(newComment)}
+    )
+    .then(response=>response.json())
+    .then(data=> data)
+    .catch(error=>{ console.log('Request Failed',error) })
+}
+/*********ADD-COMMENT****************/
+
+/*********--DELETE-COMMENT--**************/
+export const deleteComment = commentId =>{
+  let {headers} =headerPost
+  return fetch(`${url}/comments/${commentId}`,
+    { method: "delete", headers })
+  .then(response=>response.json())
+  .then(data=> data)
+  .catch(error=>{ console.log('Request Failed',error) })
+}
+/*********--DELETE-COMMENT--**************/
+
+//**EDIT-COMMENT**/
+export const editComment = ({id,body}) =>{
+  let {headers} =headerPost
+  return fetch(`${url}/comments/${id}`,{
+    method: "put",
+    headers,
+    body:JSON.stringify({body,timestamp:Date.now()})
+  })
+  .then(response=>response.json())
+  .then(data=> data)
+  .catch(error=>{ console.log('Request Failed',error) })
+}
+//**EDIT-COMMENT**/
+
+
+/*********-- CRUD-COMMENTS--**************/
+
+/*********--RATER--**************/
+export const voteOnPost = (postId,upOrDownVote) =>{
+  let {headers} =headerPost
+  return fetch(`${url}/posts/${postId}`,{
+    method: "post",
+    headers,
+    body:JSON.stringify({"option":upOrDownVote})
+  })
+  .then(response=>response.json())
+  .then(data=> data)
+  .catch(error=>{ console.log('Request Failed',error) })
+}
+export const voteOnComment = (commentId,upOrDownVote) =>{
+  let {headers} = headerPost
+  return fetch(`${url}/comments/${commentId}`,{
+    method: "post",
+    headers,
+    body:JSON.stringify({"option":upOrDownVote})
+  })
+  .then(response=>response.json())
+  .then(data=> data)
+  .catch(error=>{ console.log('Request Failed',error) })
+}
+/*********--RATER--**************/

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as Actions from './actions'
 import {commentsByPost}  from 'containers/Comments/actions'
+import { orderByComments }  from 'containers/Comments/selectors'
 
 import * as Util from 'utils'
 import { Segment, Image, Dimmer, Loader } from 'semantic-ui-react'
@@ -12,16 +13,17 @@ import './detail.css'
 
 class PostDetail extends Component {
   componentDidMount() {
-    console.log(`this props on detail componentDidMount: `,this.props)
+    // console.log(`this props on detail componentDidMount: `,this.props)
     this.props.dispatch(Actions.getPostDetail(this.props.match.params.id))
     this.props.dispatch(commentsByPost(this.props.match.params.id))
 
   }
 
   render() {
-    console.log(`this props on detail: `, this.props)
+    // console.log(`this props on POSTdetail: `, this.props)
+    // console.log(`comments en  POSTdetail: `, this.props.comments)
 
-    const { postDetail } = this.props
+    const { postDetail, comments } = this.props
     // const { id, title, timestamp, author, voteScore, body } = postDetail
     let postToShow
     if (postDetail) {
@@ -48,7 +50,7 @@ class PostDetail extends Component {
           </div>
         </Segment>
         <Segment>
-          <Comments postId={id} />
+          <Comments comments={comments} />
         </Segment>
       </Segment>
 
@@ -64,7 +66,10 @@ class PostDetail extends Component {
   }
 }
 
-const mapStateToProps =({postDetail} )=> ({ postDetail  })
+const mapStateToProps =({postDetail, comments})=> ({
+  postDetail ,
+  comments: orderByComments(comments)
+   })
 
 export default connect(mapStateToProps)(PostDetail)
 // export default PostDetail

@@ -38,11 +38,11 @@ export const tFromUTS = unixTimeStamp => {
 
 }
 
-export const arrayFromObject = (objectToConvert, idsArray) => {
-  let result = []
-  objectToConvert ? result = idsArray.map(itemID => objectToConvert[itemID]) : result = []
-  return result
-}
+// export const arrayFromObject = (objectToConvert, idsArray) => {
+//   let result = []
+//   objectToConvert ? result = idsArray.map(itemID => objectToConvert[itemID]) : result = []
+//   return result
+// }
 
 // export const sortedBy = ( posts=[], sortItemsBy) =>{
 //   let postToShow = []
@@ -79,5 +79,21 @@ export function prepareNewPost(formValues){
   formValues['voteScore']= 1;
   formValues['author']= faker.name.findName();
   // formValues['deleted']= false;
+  return formValues
+}
+
+// PARAMS:
+//   id: Any unique ID. As with posts, UUID is probably the best here.
+//   timestamp: timestamp. Get this however you want.
+//   body: String
+//   author: String
+//   parentId: Should match a post id in the database
+
+export function prepareNewComment(postId,formValues){
+  // we have in the form: body
+  formValues['id']= generateUid();
+  formValues['timestamp']= Date.now();
+  formValues['author']= faker.name.findName();
+  formValues['parentId']= postId;
   return formValues
 }

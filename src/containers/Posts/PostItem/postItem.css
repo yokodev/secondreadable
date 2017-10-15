@@ -51,14 +51,14 @@
 }
 
 
-.post-comments{
+.post-actions{
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 }
-.post-comments span{
+.post-actions span{
 }
 
-.post-comments .post-comments-popup{
+.post-actions .post-actions-popup{
   background-color: white;
   color: white
 }

@@ -1,21 +1,16 @@
 import  * as Action  from './actions'
 import  mapkeys from 'lodash.mapkeys'
 
-function createNewComments(newComments){
-  let byId={}, allIds=[]
-  byId = mapkeys(newComments,'id')
-  allIds = Object.keys(byId)
-  return { byId, allIds }
-}
-
-function comments(state = {}, action ){
+const initialState = { orderBy:'voteScore'}
+function comments(state = initialState, action ){
   switch (action.type) {
     case Action.GET_COMMENTS_BY_POSTID:
       console.log('comments by postID');
       return {...state, loading:true}
     case Action.GET_COMMENTS_BY_POSTID_SUCCESS:
       console.log('comments by postID success')
-      return {...state, loading:false, ...action.response }
+        console.log(action);
+      return {...state, loading:false, byId:mapkeys(action.comments,'id') }
     case Action.GET_COMMENTS_BY_POSTID_FAILURE:
     console.log('comments by postID Failed');
     return {...state, message:action.error, error:action.error}

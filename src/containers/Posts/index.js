@@ -42,7 +42,6 @@ class Posts extends Component {
         <Menu attached="top">
           <Menu.Item >
             <Button onClick={this.handleOpen}>Add Post</Button>
-            <Link to="/newPost">newpost</Link>
             {/* <Button onClick={this.handleOpen}>Add Post</Button> */}
           </Menu.Item>
           <Menu.Menu position="right">
