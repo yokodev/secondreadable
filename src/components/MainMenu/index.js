@@ -4,6 +4,7 @@ class MyMenu extends Component {
 
   handleOpen = (data)=>{
     console.log('from AddButton',data);
+    this.props.handleOpen()
   }
   handleVoteClick = (data,{value})=>{
     // console.log('from handleVoteClick ',data);

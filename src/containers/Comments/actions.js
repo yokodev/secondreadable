@@ -11,8 +11,22 @@ export const SET_COMMENT_RATE_SUCCESS = 'readable/Comments/SET_COMMENT_RATE_SUCC
 export const SET_COMMENT_RATE_FAILURE = 'readable/Comments/SET_COMMENT_RATE_FAILURE'
 
 export const SET_ORDER_BY = 'readable/Comments/SET_ORDER_BY'
-// export const SET_ORDER_BY_SUCCESS = 'readable/Comments/SET_ORDER_BY_SUCCESS'
-// export const SET_ORDER_BY_FAILURE = 'readable/Comments/SET_ORDER_BY_FAILURE'
+
+export const ADD_COMMENT = 'readable/Comments/ADD_COMMENT'
+export const ADD_COMMENT_SUCCESS = 'readable/Comments/ADD_COMMENT_SUCCESS'
+export const ADD_COMMENT_FAILURE = 'readable/Comments/ADD_COMMENT_FAILURE'
+
+export const EDIT_COMMENT = 'readable/Comments/EDIT_COMMENT'
+export const EDIT_COMMENT_SUCCESS = 'readable/Comments/EDIT_COMMENT_SUCCESS'
+export const EDIT_COMMENT_FAILURE = 'readable/Comments/EDIT_COMMENT_FAILURE'
+
+export const DELETE_COMMENT = 'readable/Comments/DELETE_COMMENT'
+export const DELETE_COMMENT_SUCCESS = 'readable/Comments/DELETE_COMMENT_SUCCESS'
+export const DELETE_COMMENT_FAILURE = 'readable/Comments/DELETE_COMMENT_FAILURE'
+
+
+
+
 
 // this is the sorting part
 export function setOrderBy(sortBy){
@@ -21,7 +35,6 @@ export function setOrderBy(sortBy){
     sortBy
   }
 }
-
 // this is the sorting part
 
 export const setMessage = (message)=>({
@@ -73,3 +86,57 @@ export const setCommentRate = (commentId, voteScore)=>
     )
 }
 /***********SET-COMMENT-RATE************/
+
+
+
+/***********ADD-NEW-COMMENT************/
+export const addNewComment = (postId, formValues)=>
+  dispatch=>{
+    dispatch({type:ADD_COMMENT})
+    return API.addNewComment(postId, formValues)
+    .then(
+      response =>{
+        dispatch({type:ADD_COMMENT_SUCCESS, response})
+        dispatch(commentsByPost(postId))
+      },
+      error =>{
+        dispatch({type:ADD_COMMENT_FAILURE, error})
+        throw error
+      }
+    )
+  }
+/***********ADD-NEW-COMMENT************/
+
+/***********DELETE-COMMENT************/
+export const deleteComment = (commentId)=>
+  dispatch=>{
+    dispatch({type:DELETE_COMMENT})
+    return API.deleteComment(commentId)
+    .then(
+      response =>{
+        dispatch({type:DELETE_COMMENT_SUCCESS, response})
+      },
+      error =>{
+        dispatch({type:DELETE_COMMENT_FAILURE, error})
+        throw error
+      }
+    )
+  }
+/***********DELETE-COMMENT************/
+
+/***********EDIT-COMMENT************/
+export const editComment = (commentId, body)=>
+  dispatch=>{
+    dispatch({type:EDIT_COMMENT})
+    return API.editComment(commentId, body)
+    .then(
+      response =>{
+        dispatch({type:EDIT_COMMENT_SUCCESS, response})
+      },
+      error =>{
+        dispatch({type:EDIT_COMMENT_FAILURE, error})
+        throw error
+      }
+    )
+  }
+/***********EDIT-COMMENT************/

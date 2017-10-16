@@ -94,6 +94,7 @@ export function prepareNewComment(postId,formValues){
   formValues['id']= generateUid();
   formValues['timestamp']= Date.now();
   formValues['author']= faker.name.findName();
+  formValues['voteScore']= 1;
   formValues['parentId']= postId;
   return formValues
 }

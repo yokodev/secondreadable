@@ -8,15 +8,16 @@ import './comment.css'
 const MyComment = ({comment:{id,body,author,voteScore,timestamp},ratecUp, ratecDown}) => {
 
 const  deletePost = id =>{
-    this.setState({loading:true})
-    this.props.deletePost(id,()=>{
-      // console.log('regres0 del callback ',id);
-      this.setState({loading:false})
-      this.props.history.push('/')
-    })
+    // this.setState({loading:true})
+    // this.props.deletePost(id,()=>{
+    //   // console.log('regres0 del callback ',id);
+    //   this.setState({loading:false})
+    //   this.props.history.push('/')
+    // })
+    console.log('deleting this id ',id);
   }
 const  editPost = id=>{
-    this.props.history.push(`/editPost/${id}`,{postToEdit:this.props.post})
+    // this.props.history.push(`/editPost/${id}`,{postToEdit:this.props.post})
     // console.log(this.props)
     console.log('editing this id ',id);
   }
@@ -40,7 +41,7 @@ const  editPost = id=>{
         <Comment.Text>{body}</Comment.Text>
       </Comment.Content>
     </Comment>
-    <ToolBar editHandler={()=>this.editPost(id)} deleteHandler={()=>this.deletePost(id)} />
+    <ToolBar editHandler={()=>editPost(id)} deleteHandler={()=>deletePost(id)} />
   </Segment>
 )}
 export default MyComment

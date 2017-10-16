@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { connect  } from 'react-redux'
-import { Label, Comment, Form, Button, Header, Icon, Segment } from 'semantic-ui-react'
-import ToolBar from 'components/ToolBar'
+import { Modal, Comment, Button, Header, Icon, Segment } from 'semantic-ui-react'
+// import ToolBar from 'components/ToolBar'
 import MyComment from 'components/Comment'
-import {commentsByPost, setCommentRate, setOrderBy}  from 'containers/Comments/actions'
+import {commentsByPost, setCommentRate, setOrderBy, addNewComment}  from 'containers/Comments/actions'
 import { orderByComments }  from 'containers/Comments/selectors'
 import { withRouter } from 'react-router-dom'
 import MyMenu from 'components/MainMenu'
+import CommentForm from 'components/Form/comment'
 
 class Comments extends Component {
 
@@ -15,6 +16,25 @@ class Comments extends Component {
     // this.props.dispatch(commentsByPost(this.props.match.params.id))
   }
 
+
+  state={
+    modalOpen:false
+  }
+
+  handleOpen = () => {
+    this.setState({ modalOpen: true })
+    console.log('props en papa ',this.props);
+    // this.props.history.push('/newPost')
+  }
+  handleClose = () => this.setState({ modalOpen: false })
+
+
+handleNewComment = (data) =>{
+  console.log('data desde el form:, ',data);
+  console.log('data Y AHORA LOS PROPS:, ',this.props);
+  this.props.dispatch(addNewComment(data))
+  this.handleClose()
+}
 
   // getDetail = postId => {
   //   console.log(this.props)
@@ -62,7 +82,11 @@ class Comments extends Component {
             Comments
           </Header> */}
 
-          <MyMenu  addTitle={'Add Comment'} handleVote={this.handleVote} />
+          <MyMenu  addTitle={'Add Comment'}
+            handleVote={this.handleVote}
+            handleOpen={this.handleOpen}
+            // onCancel={this.handleClose}
+          />
           <Segment attached>
             { comments.map((comment, i)=>
               <MyComment key={i}
@@ -71,6 +95,18 @@ class Comments extends Component {
                 ratecDown={this.ratecDown} />
             )}
           </Segment>
+          <Modal  scrolling
+            open={this.state.modalOpen}
+            onClose={this.handleClose}//TODO need to handle de onclose so that when a post is submitted you close this
+            closeOnEscape={false}
+            closeOnRootNodeClick={false}
+          >
+            <Modal.Header>Add Comment</Modal.Header>
+            <Modal.Content >
+              <CommentForm mainButton="Add Comment" mainIcon="add"
+                onSubmit={this.handleNewComment} onCancel={this.handleClose}/>
+            </Modal.Content>
+          </Modal>
         </Comment.Group>
       </div>
     )
