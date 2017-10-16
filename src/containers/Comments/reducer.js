@@ -14,6 +14,14 @@ function comments(state = initialState, action ){
        return {...state, orderBy:action.sortBy }
     case Action.SET_MESSAGE:
       return {...state, loading:false, message:action.response }
+    case Action.SET_COMMENT_RATE:
+        return {...state, loading:true}
+    case Action.SET_COMMENT_RATE_SUCCESS:
+        return {...state, loading:false,
+          byId:{...state.byId, [action.response.id]:action.response}
+         }
+    case Action.SET_COMMENT_RATE_FAILURE:
+        return {...state, loading:false, error:action.error}
     default:
       return state
   }

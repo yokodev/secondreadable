@@ -1,5 +1,5 @@
 import * as API from 'service/'
-
+import * as postDetailActions from '../Post/Detail/actions'
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES'
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS'
@@ -66,10 +66,13 @@ export const setPostRate = (postId, voteScore)=>
     dispatch({type:SET_POST_RATE})
     return API.voteOnPost(postId,voteScore)
     .then(
-      response=>
-        dispatch({type:SET_POST_RATE_SUCCESS,response}),
+      response=>{
+        dispatch({type:SET_POST_RATE_SUCCESS,response})
+        dispatch({type:postDetailActions.SET_POST_DETAIL_RATE_SUCCESS,response})
+      },
       error=>{
         dispatch({type:SET_POST_RATE_FAILURE,error})
+        dispatch({type:postDetailActions.SET_POST_DETAIL_RATE_FAILURE,error})
         throw error
       }
     )

@@ -17,13 +17,6 @@ export const SET_POST_DETAIL_RATE_FAILURE = 'readable/Post.Detail/SET_POST_DETAI
 
 
 
-// export function receivePostDetail(postDetail){
-//   return {
-//     type: RECEIVE_POST_DETAIL,
-//     postDetail
-//   }
-// }
-
 export const getPostDetail = (postId)=>
   dispatch=>{
     dispatch({type:GET_POST_DETAIL})
@@ -37,22 +30,3 @@ export const getPostDetail = (postId)=>
       }
     )
   }
-
-// export const genPostDetail = (postId)=>(
-//   {
-//     type:GENERATE_POST_DETAIL,
-//     postId
-//   }
-// )
-// export const genFullPostDetail = (postId)=>
-//   dispatch=>
-//     API.getPostDetailByPostId(postId)
-//     .then(
-//       json => dispatch({ type: DO_SOMETHING, json }),
-//       err => dispatch({ type: SOMETHING_FAILED, err })
-//     )
-//
-//
-//
-//     type:GENERATE_FULL_POST_DETAIL,
-//     postId
