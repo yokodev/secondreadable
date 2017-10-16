@@ -4,7 +4,7 @@ import { Loader, Dimmer } from 'semantic-ui-react'
 import CatToArraySelector from 'containers/Categories/selectors'
 import Form from 'components/Form'
 import {editPost,} from './actions'
-import {getPostDetail} from '../Detail/actions'
+// import {getPostDetail} from '../Detail/actions'
 
 
 class EditPost extends Component{

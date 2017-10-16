@@ -17,6 +17,13 @@ function postDetail(state = {}, action ){
       return { ...state, loading:false, ...action.postDetail }
     case Action.GET_POST_DETAIL_FAILURE:
       return { ...state, loading:false, error:action.error,id:action.postId }
+    case Action.SET_POST_DETAIL_RATE:
+      return  {...state, loading:true}
+    case Action.SET_POST_DETAIL_RATE_SUCCESS:
+    console.log('la cation antes de',action);
+      return  { ...state, loading:false, voteScore: action.response }
+    case Action.SET_POST_DETAIL_RATE_FAILURE:
+    return  {...state, loading:false, error:action.error }
     default:
       return state
   }

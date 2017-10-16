@@ -3,9 +3,10 @@
   display: flex;
 }
 .post-rater{
-  padding-right: 10px;
-  width: 70px;
-  align-self: center;
+  /*padding-right: 10px;*/
+  /*width: 70px;*/
+  /*align-self: center;*/
+  height: 100%;
 }
 .post-image{
   width: 200px;

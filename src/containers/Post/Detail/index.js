@@ -1,28 +1,34 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import * as Actions from './actions'
-import {commentsByPost}  from 'containers/Comments/actions'
-import { orderByComments }  from 'containers/Comments/selectors'
-
+import { connect  } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import * as Util from 'utils'
-import { Segment, Image, Dimmer, Loader } from 'semantic-ui-react'
+import { Segment, Image, Dimmer, Loader, Label, Icon } from 'semantic-ui-react'
 import Rater from 'components/Rater'
-import image from 'assets/images/message.png'
+import { getPostDetail } from './actions'
+import {commentsByPost, setCommentRate}  from 'containers/Comments/actions'
 import Comments from 'containers/Comments'
+import {setPostRate} from 'containers/Posts/actions'
 import './detail.css'
 
 class PostDetail extends Component {
   componentDidMount() {
     // console.log(`this props on detail componentDidMount: `,this.props)
-    this.props.dispatch(Actions.getPostDetail(this.props.match.params.id))
+
+    this.props.dispatch(getPostDetail(this.props.match.params.id))
     this.props.dispatch(commentsByPost(this.props.match.params.id))
 
   }
-
+  rateUp = ()=>{
+    let { postDetail:{id},dispatch}=this.props
+    // console.log('rateUP enPostItem con postID: ',id);
+    this.props.dispatch(setPostRate(id,'upVote'))
+  }
+  rateDown = ()=>{
+    let { postDetail:{id},dispatch}=this.props
+    // console.log('rateDOWN enPostItem con postID: ',this.props);
+    this.props.dispatch(setPostRate(id,'downVote'))
+  }
   render() {
-    // console.log(`this props on POSTdetail: `, this.props)
-    // console.log(`comments en  POSTdetail: `, this.props.comments)
-
     const { postDetail, comments } = this.props
     // const { id, title, timestamp, author, voteScore, body } = postDetail
     let postToShow
@@ -33,11 +39,10 @@ class PostDetail extends Component {
         <Segment>
           <div className="post">
             <div className="post-rater">
-              <Rater voteScore={voteScore} />
+              <Rater voteScore={voteScore} rateUp={this.rateUp} rateDown={this.rateDown} />
             </div>
             <div className="post-image">
               <Image shape="circular" src="https://picsum.photos/100/100/?random" size="small" />
-              {/* <Image shape="circular" src="https://picsum.photos/100/100/?random" size="tiny" /> */}
             </div>
             <div className="post-content">
               <h2 className="post-title">{title}</h2>
@@ -45,12 +50,14 @@ class PostDetail extends Component {
                 {`submitted ${Util.timeSince(timestamp)} by `} <span> {author} </span>
               </p>
               <p className="post-body">{body}</p>
-              <p className="post-comments">{`805 comments `}</p>
+              <p className="post-comments">{`805 comments `}</p>// FIXME: Comments not working
             </div>
           </div>
+          <Label as='a' color='red' ribbon="right"><Icon name="comments" />805 Comments</Label>
         </Segment>
         <Segment>
-          <Comments comments={comments} />
+          {/* <Comments comments={comments} id={id} /> */}
+          <Comments  id={id} />
         </Segment>
       </Segment>
 
@@ -66,10 +73,11 @@ class PostDetail extends Component {
   }
 }
 
-const mapStateToProps =({postDetail, comments})=> ({
-  postDetail ,
-  comments: orderByComments(comments)
+const mapStateToProps =({postDetail})=> ({
+  postDetail
    })
 
-export default connect(mapStateToProps)(PostDetail)
+   export default connect(mapStateToProps)(PostDetail)
+// export default connect(mapStateToProps, { getPostDetail})(PostDetail)
+// export default connect(mapStateToProps, {setPostRate, commentsByPost, getPostDetail})(PostDetail)
 // export default PostDetail

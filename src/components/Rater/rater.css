@@ -1,0 +1,46 @@
+/***REGULAR RATER***/
+.raterwrapper{
+  width: 26px;
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 20px 20px 20px;
+  grid-template-areas: ". up ."
+                       ". score ."
+                       ". down . ";
+  justify-content: center;
+}
+
+.up {
+  grid-area: up;
+}
+.down {
+  grid-area: down;
+}
+
+.score{
+  background-color: white;
+  grid-area: score;
+  font-weight: bold;
+  font-size: small;
+  text-align: center;
+  color: #c6c6c6;
+  align-self: center;
+}
+/***REGULAR RATER***/
+
+/***MINI RATER***/
+
+.miniwrapper{
+  width: 20px;
+  height: 100%;
+  align-self: center;
+  margin-right: 10px;
+}
+.ritem{
+  height: 20px;
+  width: 20px;
+}
+.rmitem{
+  height: 15px;
+  width: 15px;
+}

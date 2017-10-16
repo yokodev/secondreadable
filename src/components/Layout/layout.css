@@ -30,32 +30,3 @@
        "footer "
    }
 }
-
-.raterwrapper{
-  width: 45px;
-  display: inline-grid;
-  grid-template-columns: 1fr,1fr,1fr;
-  grid-template-rows: 15px,42px,15px;
-  grid-template-areas: ". up ."
-                       "score score score"
-                       ". down .";
-  justify-content: center;
-
-}
-
-.up {
-  grid-area: up;
-}
-.down {
-  grid-area: down;
-}
-
-.score{
-  background-color: white;
-  grid-area: score;
-  font-weight: bold;
-  font-size: small;
-  text-align: center;
-  color: #c6c6c6;
-  margin-left: -4px;
-}

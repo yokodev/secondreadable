@@ -1,0 +1,16 @@
+.single-comment{
+  display: flex;
+  justify-content: center;
+}
+
+.the-comment{
+width: 80%;
+}
+.minirater{
+  width: 20%;
+}
+
+.ctoolbar{
+  align-self: flex-end;
+  /*width: 30%;*/
+}

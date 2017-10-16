@@ -3,11 +3,10 @@ import { connect } from 'react-redux';
 import './post.css';
 import { getPosts, setOrderBy, getPostsByCat} from './actions';
 import SinglePost from './PostItem';
-import * as Utils from 'utils';
-import {orderByPosts, postsArrayFromObject } from './selectors'
+import {orderByPosts } from './selectors'
 import NewPostForm from 'components/Form'
-import {Segment, Menu,Dropdown, Button, Icon, Modal,Container, Grid } from 'semantic-ui-react'
-import { Link, NavLink, withRouter  } from 'react-router-dom';
+import {Segment, Menu,Dropdown, Button, Modal } from 'semantic-ui-react'
+// import {  withRouter  } from 'react-router-dom';
 
 class Posts extends Component {
 

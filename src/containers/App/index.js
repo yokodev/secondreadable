@@ -32,7 +32,9 @@ class App extends Component {
           <Route path="/editPost/:id"
             render={(rprops) => <EditPost categories={categories} {...rprops} />}
           />
-          <Route path="/:cat/:id" component={PostDetail}/>
+          <Route path="/:cat/:id"
+            render={(rprops) => <PostDetail {...rprops} />}
+          />
           <Route path="/:cat"
             render={(rprops) => <Posts categories={categories}{...rprops} />}
             />

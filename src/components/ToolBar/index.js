@@ -16,7 +16,7 @@ class ToolBar extends Component{
   render(){
     const {editHandler}= this.props
     return(
-        <div>
+        <div className="ctoolbar">
           <Button.Group>
             <Button icon='edit' onClick={editHandler} />
             <Button icon='trash outline' color="red" onClick={this.show} />
