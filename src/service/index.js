@@ -114,7 +114,7 @@ fetch(`${url}/comments/${commentId}`, headers)
 
 /*********ADD-COMMENT****************/
 export const addNewComment = (postId, formValues) =>{
-  let newComment= Utils.prepareNewPost(postId,formValues)
+  let newComment= Utils.prepareNewComment(postId,formValues)
   let {headers} =headerPost
   return fetch(`${url}/comments`,{
     method: "post",
@@ -139,12 +139,12 @@ export const deleteComment = commentId =>{
 /*********--DELETE-COMMENT--**************/
 
 //**EDIT-COMMENT**/
-export const editComment = ({id,body}) =>{
+export const editComment = (id,body) =>{
   let {headers} =headerPost
   return fetch(`${url}/comments/${id}`,{
     method: "put",
     headers,
-    body:JSON.stringify({body,timestamp:Date.now()})
+    body:JSON.stringify({timestamp:Date.now(),body})
   })
   .then(response=>response.json())
   .then(data=> data)

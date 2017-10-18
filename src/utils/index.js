@@ -89,12 +89,13 @@ export function prepareNewPost(formValues){
 //   author: String
 //   parentId: Should match a post id in the database
 
-export function prepareNewComment(postId,formValues){
-  // we have in the form: body
-  formValues['id']= generateUid();
-  formValues['timestamp']= Date.now();
-  formValues['author']= faker.name.findName();
-  formValues['voteScore']= 1;
-  formValues['parentId']= postId;
-  return formValues
+export function prepareNewComment(postId,body){
+  let newComment ={}
+  newComment['id']= generateUid();
+  newComment['timestamp']= Date.now();
+  newComment['author']= faker.name.findName();
+  newComment['voteScore']= 1;
+  newComment['parentId']= postId;
+  newComment['body']= body;
+  return newComment
 }

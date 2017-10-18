@@ -26,10 +26,9 @@ function comments(state = initialState, action ){
     case Action.ADD_COMMENT:
         return {...state, loading:true }
     case Action.ADD_COMMENT_SUCCESS:
+        const newPost = action.response
         return {...state, loading:false,
-          byid:{...state.byId,
-            [action.response.id]:action.respose
-          }
+          byId:{...state.byId, [newPost.id]:newPost }
         }
     case Action.ADD_COMMENT_FAILURE:
         return {...state, loading:false, error:action.error}
@@ -37,14 +36,18 @@ function comments(state = initialState, action ){
         return {...state, loading:true }
     case Action.EDIT_COMMENT_SUCCESS:
         return {...state, loading:false,
-          byid:{...state.byId,
-            [action.response.id]:action.respose
+          byId:{...state.byId,
+            [action.response.id]:action.response
           }
         }
     case Action.EDIT_COMMENT_FAILURE:
         return {...state, loading:false, error:action.error}
     case Action.DELETE_COMMENT:
-        return  omit(state,action.commentId)
+      return { ...state, loading: true}
+    case Action.DELETE_COMMENT_SUCCESS:
+      return {...state, byId:omit(state.byId,action.response.id)  }
+    case Action.DELETE_COMMENT_FAILURE:
+      return { ...state, loading: false, error:action.error}
     default:
       return state
   }

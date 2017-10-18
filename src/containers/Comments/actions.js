@@ -1,16 +1,15 @@
 import * as API from 'service/'
 
-
 export const GET_COMMENTS_BY_POSTID = 'readable/Comments/GET_COMMENTS_BY_POSTID'
 export const GET_COMMENTS_BY_POSTID_SUCCESS = 'readable/Comments/GET_COMMENTS_BY_POSTID_SUCCESS'
 export const GET_COMMENTS_BY_POSTID_FAILURE = 'readable/Comments/GET_COMMENTS_BY_POSTID_FAILURE'
+
 export const SET_MESSAGE = 'readable/Comments/SET_MESSAGE'
+export const SET_ORDER_BY = 'readable/Comments/SET_ORDER_BY'
 
 export const SET_COMMENT_RATE = 'readable/Comments/SET_COMMENT_RATE'
 export const SET_COMMENT_RATE_SUCCESS = 'readable/Comments/SET_COMMENT_RATE_SUCCESS'
 export const SET_COMMENT_RATE_FAILURE = 'readable/Comments/SET_COMMENT_RATE_FAILURE'
-
-export const SET_ORDER_BY = 'readable/Comments/SET_ORDER_BY'
 
 export const ADD_COMMENT = 'readable/Comments/ADD_COMMENT'
 export const ADD_COMMENT_SUCCESS = 'readable/Comments/ADD_COMMENT_SUCCESS'
@@ -19,6 +18,10 @@ export const ADD_COMMENT_FAILURE = 'readable/Comments/ADD_COMMENT_FAILURE'
 export const EDIT_COMMENT = 'readable/Comments/EDIT_COMMENT'
 export const EDIT_COMMENT_SUCCESS = 'readable/Comments/EDIT_COMMENT_SUCCESS'
 export const EDIT_COMMENT_FAILURE = 'readable/Comments/EDIT_COMMENT_FAILURE'
+
+export const GET_COMMENT_DETAIL = 'readable/Comments/GET_COMMENT_DETAIL'
+export const GET_COMMENT_DETAIL_SUCCESS = 'readable/Comments/GET_COMMENT_DETAIL_SUCCESS'
+export const GET_COMMENT_DETAIL_FAILURE = 'readable/Comments/GET_COMMENT_DETAIL_FAILURE'
 
 export const DELETE_COMMENT = 'readable/Comments/DELETE_COMMENT'
 export const DELETE_COMMENT_SUCCESS = 'readable/Comments/DELETE_COMMENT_SUCCESS'
@@ -97,7 +100,7 @@ export const addNewComment = (postId, formValues)=>
     .then(
       response =>{
         dispatch({type:ADD_COMMENT_SUCCESS, response})
-        dispatch(commentsByPost(postId))
+        // dispatch(commentsByPost(postId))
       },
       error =>{
         dispatch({type:ADD_COMMENT_FAILURE, error})
@@ -135,6 +138,23 @@ export const editComment = (commentId, body)=>
       },
       error =>{
         dispatch({type:EDIT_COMMENT_FAILURE, error})
+        throw error
+      }
+    )
+  }
+/***********EDIT-COMMENT************/
+
+export const getThisComment = (commentId, callback)=>
+  dispatch=>{
+    dispatch({type:GET_COMMENT_DETAIL})
+    return API.getCommentDetail(commentId )
+    .then(
+      response =>{
+        dispatch({type:GET_COMMENT_DETAIL_SUCCESS, response})
+        callback(response)
+      },
+      error =>{
+        dispatch({type:GET_COMMENT_DETAIL_FAILURE, error})
         throw error
       }
     )

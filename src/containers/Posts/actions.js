@@ -25,7 +25,7 @@ export function getPosts() {
   return function(dispatch){
     return API.getPosts()
       .then(posts=>dispatch(receivePosts(posts)))
-  }
+  }//TODO THE SAME AS BELOW THIS NEEDS TO GET FIXED IN ORDER TO PASS THE COUNT NUMBER
 }
 
 export function receivePosts(posts){
@@ -37,7 +37,7 @@ export function receivePosts(posts){
 
 export function getPostsByCat(thisCategory) {
   return function(dispatch){
-    return API.getPostsByCategory(thisCategory)
+    return API.getPostsByCategory(thisCategory) //TODO this is where I need to fix the counting of comments
       .then(posts=>dispatch(receivePosts(posts)))
   }
 }

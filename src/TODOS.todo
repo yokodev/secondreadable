@@ -9,10 +9,10 @@ CurrentTODOS:
   ☐ Detail:
     ✔ List of Comments @done(2017-10-15 13:21) @project(CurrentTODOS / ☐ Detail)
     ✔ Rater Working @done(2017-10-16 08:28) @project(CurrentTODOS / ☐ Detail)
-    ☐ Add Comment
-    ☐ Delete Comment
+    ✔ Add Comment @done(2017-10-16 21:55) @project(CurrentTODOS / ☐ Detail)
+    ✔ Delete Comment @done(2017-10-16 21:55) @project(CurrentTODOS / ☐ Detail)
     ✔ Comment Rater Working @done(2017-10-16 08:28) @project(CurrentTODOS / ☐ Detail)
-    ☐ Edit Comment
+    ✔ Edit Comment @done(2017-10-16 21:55) @project(CurrentTODOS / ☐ Detail)
 
 Is application state managed by Redux?:
 Does application state update correctly?:
@@ -22,20 +22,20 @@ Application Functionality:
 
 Does the post detail page have desired functionality?:
 ☐ Post is displayed with title, body, author, number of comments, current score and voting mechanism. Post should have buttons or links for editing or deleting that post.
-☐ Listed comments are displayed with author, current score, and a voting mechanism to upvote or downvote the comment. Comments should have buttons or links for editing or deleting that comment.
-☐ The voting mechanism works and correctly displays the new vote score after clicking for both the post and comments.
-☐ A mechanism for adding a new comment is visible on the detail page and functional.
+✔ Listed comments are displayed with author, current score, and a voting mechanism to upvote or downvote the comment. Comments should have buttons or links for editing or deleting that comment. @done(2017-10-16 21:57)
+✔ The voting mechanism works and correctly displays the new vote score after clicking for both the post and comments. @done(2017-10-16 21:57)
+✔ A mechanism for adding a new comment is visible on the detail page and functional. @done(2017-10-16 21:56)
 
 Can users add new posts?:
 
 Can users add comments?:
-☐ Application has a form for adding comments to a post. Submitting the form properly adds the comment to the correct post.
+✔ Application has a form for adding comments to a post. Submitting the form properly adds the comment to the correct post. @done(2017-10-16 21:57)
 
 Can users edit posts/comments?:
-☐ Edit buttons for posts/comments open a form with existing data pre-populated. Submitting the form correctly updates the data for the comment/post.
+✔ Edit buttons for posts/comments open a form with existing data pre-populated. Submitting the form correctly updates the data for the comment/post. @done(2017-10-16 21:58)
 
 Can users delete posts/comments?:
-☐ A mechanism for deleting posts and comments exists.
+✔ A mechanism for deleting posts and comments exists. @done(2017-10-16 21:58)
   Clicking the button/link correctly removes the post/comment from list view and makes post inaccessible at it's URL.
 
 Is the application navigable?:

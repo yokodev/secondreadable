@@ -5,12 +5,12 @@ class ToolBar extends Component{
 
   state = { open: false }
 
-    show = () => this.setState({ open: true })
-    handleConfirm = () => {
-      this.setState({ open: false })
-      this.props.deleteHandler()
-    }
-    handleCancel = () => this.setState({ open: false })
+  show = () => this.setState({ open: true })
+  handleConfirm = () => {
+    this.setState({ open: false })
+    this.props.deleteHandler()
+  }
+  handleCancel = () => this.setState({ open: false })
 
 
   render(){

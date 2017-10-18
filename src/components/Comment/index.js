@@ -5,21 +5,26 @@ import ToolBar from 'components/ToolBar'
 import Rater from 'components/Rater/mini'
 import './comment.css'
 
-const MyComment = ({comment:{id,body,author,voteScore,timestamp},ratecUp, ratecDown}) => {
+const MyComment = (
+  {comment:{id,body,author,voteScore,timestamp},
+  ratecUp, ratecDown, deleteComment, editComment
+  }) => {
 
-const  deletePost = id =>{
-    // this.setState({loading:true})
-    // this.props.deletePost(id,()=>{
+const  deleteComment1 = id =>{
+    // this.setState({editComment:true})
+    // this.props.deleteComment(id,()=>{
     //   // console.log('regres0 del callback ',id);
     //   this.setState({loading:false})
     //   this.props.history.push('/')
     // })
+    deleteComment(id)
     console.log('deleting this id ',id);
   }
-const  editPost = id=>{
-    // this.props.history.push(`/editPost/${id}`,{postToEdit:this.props.post})
-    // console.log(this.props)
-    console.log('editing this id ',id);
+  const  editComment1 = id=>{
+      // this.props.history.push(`/editPost/${id}`,{postToEdit:this.props.post})
+      // console.log(this.props)
+      console.log('editing this id ',id);
+    editComment(id)
   }
 
   const handleRateUp =   (e)=> ratecUp(id)
@@ -41,7 +46,7 @@ const  editPost = id=>{
         <Comment.Text>{body}</Comment.Text>
       </Comment.Content>
     </Comment>
-    <ToolBar editHandler={()=>editPost(id)} deleteHandler={()=>deletePost(id)} />
+    <ToolBar editHandler={()=>editComment(id)} deleteHandler={()=>deleteComment(id)} />
   </Segment>
 )}
 export default MyComment
