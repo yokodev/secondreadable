@@ -28,7 +28,7 @@ function posts(state = initialState, action ){
     case Action.SET_POST_RATE_SUCCESS:
       let post = action.response
       return  { ...state, loading:false,
-        byId:{ ...state.byId, [post.id]: post }
+        byId:{ ...state.byId, [post.id]:{...state.byId[post.id],voteScore:post.voteScore }  }
       }
     case Action.SET_POST_RATE_FAILURE:
     return  {...state, loading:false, error:action.error }
