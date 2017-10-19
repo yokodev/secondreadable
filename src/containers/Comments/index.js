@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect  } from 'react-redux'
 import { Comment, Segment } from 'semantic-ui-react'
-// import ToolBar from 'components/ToolBar'
 import MyComment from 'components/Comment'
 import {deleteComment, setCommentRate, setOrderBy,
         addNewComment, editComment, getThisComment }  from './actions'
@@ -13,8 +12,6 @@ import MyModal from 'components/MyModal'
 class Comments extends Component {
 
   componentDidMount() {
-    console.log(`COMMENTS  LIST componentDidMount: `,this.props)
-    // this.props.dispatch(commentsByPost(this.props.match.params.id))
   }
 
 
@@ -23,39 +20,25 @@ handleNewComment = (data) =>{
   this.props.dispatch(addNewComment(this.props.id,data.body))
   this.handleClose()
 }
-  // getDetail = postId => {
-  //   console.log(this.props)
-  //   console.log(`este es el postid `,postId);
-  //   // this.props.dispatch(Actions.genPostDetail(postId))
-  // }
+
   deleteComment = id =>{
     const {dispatch}= this.props
      this.setState({loading:true})//TODO ADD A CALLBACK OR LOADER
-    // this.props.dispatch(deleteComment(id,()=>{
-      // console.log('regres0 del callback ',id);
-      // this.setState({loading:false})
-      // this.props.history.push('/')
-    // }))
+
     dispatch(deleteComment(id))
   }
 
   editComment = id =>{//FIX NEED TO COME HERE WHENEVER I'm done with the edit
-    // this.props.history.push(`/editComment/${id}`,{postToEdit:this.props.post})
-    // console.log('editing this id ',id);
-    // console.log('editing props en editing ',this.props);
-    // this.props.dispatch(editComment(id))
+
     this.props.dispatch(getThisComment(id,
       (data)=>{
-        console.log('returning from callback ',data);
         this.setState({editPayload:data})
         this.changingToEditMode()
       }))
   }
 
   submitCommentChanges = (data)=>{
-    console.log('en submit chero',data);
     const {body, payload:{id}}=data
-    // console.log('en submit chero',this.props);
     this.props.dispatch(editComment(id,body))
     this.handleClose()
   }
@@ -92,9 +75,7 @@ handleClose = () => { this.state.adding
     return (
       <div className="comments-wrapper">
         <Comment.Group>
-          {/* <Header as="h3" dividing>
-            Comments
-          </Header> */}
+
           <MyMenu  addTitle={'Add Comment'}
             handleVote={this.handleVote} handleOpen={this.changingToAddMode}
           />

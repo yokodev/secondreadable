@@ -6,7 +6,6 @@ import * as Utils from 'utils'
 class GralForm extends Component{
 
    componentDidMount(){
-    // console.log(`this props componentDidMount`,this.props)
     let {edit}=this.props
     edit && this.setState({edit:true,title:edit.title, body:edit.body, category:edit.category })
    }
@@ -23,7 +22,6 @@ class GralForm extends Component{
   }
 
   handleCancel = (e) =>{
-    // console.log('handleCancel GralForm ',this.props);
     this.props.onCancel()
   }
 
@@ -38,7 +36,6 @@ class GralForm extends Component{
   }
 
   render(){
-    // console.log(`props en render new Gralform `,this.props);
     const catOptions = this.catToOptions(this.props.categories)
     const {formTitle} = this.props
     const { title, body, category,edit } = this.state

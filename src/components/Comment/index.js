@@ -10,14 +10,6 @@ const MyComment = (
   ratecUp, ratecDown, deleteComment, editComment
   }) => {
 
-// const  deleteComment1 = id =>{
-//     deleteComment(id)
-//     console.log('deleting this id ',id);
-//   }
-//   const  editComment1 = id=>{
-//       console.log('editing this id ',id);
-//     editComment(id)
-//   }
 
   const handleRateUp =   (e)=> ratecUp(id)
   const handleRateDown = (e)=> ratecDown(id)

@@ -55,7 +55,7 @@ export const createNewPost = formValues =>{
     )
     .then(response=>response.json())
     .then(data=> data)
-    .catch(error=>{ console.log('Request Failed',error) })
+    .catch(error=>{ console.error('Request Failed',error) })
 }
 //**EDITPOST**/
 export const editPost = ({id,title,body}) =>{
@@ -67,7 +67,7 @@ export const editPost = ({id,title,body}) =>{
   })
   .then(response=>response.json())
   .then(data=> data)
-  .catch(error=>{ console.log('Request Failed',error) })
+  .catch(error=>{ console.error('Request Failed',error) })
 }
 //**EDITPOST**/
 /*********--DELETE-POST--**************/
@@ -77,7 +77,7 @@ export const deletePost = postId =>{
     { method: "delete", headers })
   .then(response=>response.json())
   .then(data=> data)
-  .catch(error=>{ console.log('Request Failed',error) })
+  .catch(error=>{ console.error('Request Failed',error) })
 }
 /*********--DELETE-POST--**************/
 
@@ -123,7 +123,7 @@ export const addNewComment = (postId, formValues) =>{
     )
     .then(response=>response.json())
     .then(data=> data)
-    .catch(error=>{ console.log('Request Failed',error) })
+    .catch(error=>{ console.error('Request Failed',error) })
 }
 /*********ADD-COMMENT****************/
 
@@ -134,7 +134,7 @@ export const deleteComment = commentId =>{
     { method: "delete", headers })
   .then(response=>response.json())
   .then(data=> data)
-  .catch(error=>{ console.log('Request Failed',error) })
+  .catch(error=>{ console.error('Request Failed',error) })
 }
 /*********--DELETE-COMMENT--**************/
 
@@ -148,7 +148,7 @@ export const editComment = (id,body) =>{
   })
   .then(response=>response.json())
   .then(data=> data)
-  .catch(error=>{ console.log('Request Failed',error) })
+  .catch(error=>{ console.error('Request Failed',error) })
 }
 //**EDIT-COMMENT**/
 
@@ -165,7 +165,7 @@ export const voteOnPost = (postId,upOrDownVote) =>{
   })
   .then(response=>response.json())
   .then(data=> data)
-  .catch(error=>{ console.log('Request Failed',error) })
+  .catch(error=>{ console.error('Request Failed',error) })
 }
 export const voteOnComment = (commentId,upOrDownVote) =>{
   let {headers} = headerPost
@@ -176,6 +176,6 @@ export const voteOnComment = (commentId,upOrDownVote) =>{
   })
   .then(response=>response.json())
   .then(data=> data)
-  .catch(error=>{ console.log('Request Failed',error) })
+  .catch(error=>{ console.error('Request Failed',error) })
 }
 /*********--RATER--**************/

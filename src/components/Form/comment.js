@@ -4,7 +4,6 @@ import { Form, Button } from 'semantic-ui-react'
 class CommentForm extends Component {
 
   componentDidMount(){
-  //  console.log(`this props componentDidMount`,this.props)
    let {payload}=this.props
    payload && this.setState({body:payload.body, payload })
   }
@@ -12,7 +11,6 @@ class CommentForm extends Component {
   state = {edit:false, body:''}
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
   handleSubmit = () => {
-    // console.log('el stado',this.state);
     this.props.onSubmit(this.state)
     this.setState({ body:''})
  }
@@ -20,7 +18,6 @@ class CommentForm extends Component {
  handleCancel = (e) => this.props.onCancel()
 
   render() {
-    // console.log('en el form cherada',this.props);
     const {mainButton,mainIcon}= this.props
     const { body } = this.state
     return (

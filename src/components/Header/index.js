@@ -21,12 +21,7 @@ class Header extends Component {
         <div className='header-title'>
           <Link className='header-title-link' to="/"
             onClick={//FIXME THIS NEEDS TO GET THE ids of all the posts
-              ()=>{this.props.dispatch(actions.allPostsWComments())
-                .then(posts=>{
-                  console.log("las props en onclick " ,this.props);
-                  console.log('los posts ',posts);
-                })
-              }
+              ()=>{this.props.dispatch(actions.allPostsWComments())}
             }
             >
             Readable

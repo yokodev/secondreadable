@@ -14,20 +14,12 @@ class Posts extends Component {
 
   componentDidMount() {
     const {match:{params:{cat}},allPostsWComments, allPostsWCommentsNCat  }=this.props
-    cat
-    ? allPostsWCommentsNCat(cat).then(data=>{console.log('datawithcat', data );})
-    // ? getPostsByCat(cat).then(data=>{allPostsWComments()})
-    : allPostsWComments().then(data=>{console.log('myData corio, ',data);})
-    // : getPosts().then(data=>{console.log('myData corio, ',data);})
-    // : getPosts().then(data=>allPostsWComments())
+    cat ? allPostsWCommentsNCat(cat) : allPostsWComments()
   }
   componentDidUpdate(prevProps) {
     const {match:{params:{cat},path}, allPostsWCommentsNCat} =  this.props
     prevProps.match.params.cat !== cat && path !== "/" &&
-    allPostsWCommentsNCat(cat).then(data=>{console.log('datawithcat en CDU', data );})
-
-    console.log('prevProps ',prevProps);
-    console.log('props ',this.props);
+    allPostsWCommentsNCat(cat)
   }
 
   handleVoteClick = (e, { value }) => { this.props.setOrderBy(value) }
@@ -37,7 +29,6 @@ class Posts extends Component {
 
   render() {
     const {posts, categories,history } = this.props;
-    console.log('Rerender en Posts, cats= ',categories);
     return (
       <Segment >
         <Menu attached="top">

@@ -13,7 +13,6 @@ import './detail.css'
 class PostDetail extends Component {
 
   componentDidMount() {
-    // console.log(`this props on detail componentDidMount: `,this.props)
     this.props.dispatch(getPostDetail(this.props.match.params.id,(result)=>{
       result
       ? this.props.history.push('/notfound')

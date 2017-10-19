@@ -14,8 +14,7 @@ export function createNewPost(newPost,callback) {
     .then((data)=>{
       console.log(`Request succedeed`,data)
       callback()
-      console.log('hello after callback');
-    })
+    },error =>{console.log('error on createNewPosts'); throw error})
   }
 }
 

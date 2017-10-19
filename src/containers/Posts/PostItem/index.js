@@ -18,7 +18,6 @@ class PostItem extends Component {
   deletePost = id =>{
     this.setState({loading:true})
     this.props.deletePost(id,()=>{
-      // console.log('regres0 del callback ',id);
       this.setState({loading:false})
       this.props.history.push('/')
     })
@@ -35,8 +34,6 @@ class PostItem extends Component {
     setPostRate(id,'downVote')
   }
   render() {
-    // let id, timestamp, title, body, author, category, voteScore, deleted
-    // console.log(`lasprops en singlePost: `, this.props)
     let { id, title, timestamp, author, voteScore, category,comments } = this.props.post
     let {loading} = this.state
     return (

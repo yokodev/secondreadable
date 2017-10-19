@@ -2,40 +2,22 @@ Readable:
 
 CurrentTODOS:
   ☐ POSTS:
-    ✔ Orderby @done(2017-10-13 11:35) @project(CurrentTODOS / ☐ POSTS)
-    ☐ Comments Count
-    ✔ Rater Working @done(2017-10-13 11:35) @project(CurrentTODOS / ☐ POSTS)
-    ✔ Edit Posts @done(2017-10-13 15:47) @project(CurrentTODOS / ☐ POSTS)
   ☐ Detail:
-    ✔ List of Comments @done(2017-10-15 13:21) @project(CurrentTODOS / ☐ Detail)
-    ✔ Rater Working @done(2017-10-16 08:28) @project(CurrentTODOS / ☐ Detail)
-    ✔ Add Comment @done(2017-10-16 21:55) @project(CurrentTODOS / ☐ Detail)
-    ✔ Delete Comment @done(2017-10-16 21:55) @project(CurrentTODOS / ☐ Detail)
-    ✔ Comment Rater Working @done(2017-10-16 08:28) @project(CurrentTODOS / ☐ Detail)
-    ✔ Edit Comment @done(2017-10-16 21:55) @project(CurrentTODOS / ☐ Detail)
 
 Is application state managed by Redux?:
 Does application state update correctly?:
 
 Application Functionality:
-☐ Listed posts are displayed with title, author, number of comments, current score, and a voting mechanism to upvote or downvote the post. Posts should have buttons or links for editing or deleting that post.
 
 Does the post detail page have desired functionality?:
-☐ Post is displayed with title, body, author, number of comments, current score and voting mechanism. Post should have buttons or links for editing or deleting that post.
-✔ Listed comments are displayed with author, current score, and a voting mechanism to upvote or downvote the comment. Comments should have buttons or links for editing or deleting that comment. @done(2017-10-16 21:57)
-✔ The voting mechanism works and correctly displays the new vote score after clicking for both the post and comments. @done(2017-10-16 21:57)
-✔ A mechanism for adding a new comment is visible on the detail page and functional. @done(2017-10-16 21:56)
 
 Can users add new posts?:
 
 Can users add comments?:
-✔ Application has a form for adding comments to a post. Submitting the form properly adds the comment to the correct post. @done(2017-10-16 21:57)
 
 Can users edit posts/comments?:
-✔ Edit buttons for posts/comments open a form with existing data pre-populated. Submitting the form correctly updates the data for the comment/post. @done(2017-10-16 21:58)
 
 Can users delete posts/comments?:
-✔ A mechanism for deleting posts and comments exists. @done(2017-10-16 21:58)
   Clicking the button/link correctly removes the post/comment from list view and makes post inaccessible at it's URL.
 
 Is the application navigable?:
@@ -49,6 +31,24 @@ ctrl-shift-s: add/update timestamp for current task
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+  ✔ Orderby @done(2017-10-13 11:35) @project(CurrentTODOS / ☐ POSTS)
+  ✔ Comments Count @done(2017-10-18 22:36) @project(CurrentTODOS / ☐ POSTS)
+  ✔ Rater Working @done(2017-10-13 11:35) @project(CurrentTODOS / ☐ POSTS)
+  ✔ Edit Posts @done(2017-10-13 15:47) @project(CurrentTODOS / ☐ POSTS)
+  ✔ List of Comments @done(2017-10-15 13:21) @project(CurrentTODOS / ☐ Detail)
+  ✔ Rater Working @done(2017-10-16 08:28) @project(CurrentTODOS / ☐ Detail)
+  ✔ Add Comment @done(2017-10-16 21:55) @project(CurrentTODOS / ☐ Detail)
+  ✔ Delete Comment @done(2017-10-16 21:55) @project(CurrentTODOS / ☐ Detail)
+  ✔ Comment Rater Working @done(2017-10-16 08:28) @project(CurrentTODOS / ☐ Detail)
+  ✔ Edit Comment @done(2017-10-16 21:55) @project(CurrentTODOS / ☐ Detail)
+  ✔ Listed posts are displayed with title, author, number of comments, current score, and a voting mechanism to upvote or downvote the post. Posts should have buttons or links for editing or deleting that post. @done(2017-10-18 22:37)
+  ✔ Post is displayed with title, body, author, number of comments, current score and voting mechanism. Post should have buttons or links for editing or deleting that post. @done(2017-10-18 22:38)
+  ✔ Listed comments are displayed with author, current score, and a voting mechanism to upvote or downvote the comment. Comments should have buttons or links for editing or deleting that comment. @done(2017-10-16 21:57)
+  ✔ The voting mechanism works and correctly displays the new vote score after clicking for both the post and comments. @done(2017-10-16 21:57)
+  ✔ A mechanism for adding a new comment is visible on the detail page and functional. @done(2017-10-16 21:56)
+  ✔ Application has a form for adding comments to a post. Submitting the form properly adds the comment to the correct post. @done(2017-10-16 21:57)
+  ✔ Edit buttons for posts/comments open a form with existing data pre-populated. Submitting the form correctly updates the data for the comment/post. @done(2017-10-16 21:58)
+  ✔ A mechanism for deleting posts and comments exists. @done(2017-10-16 21:58)
   ✔ The voting mechanism works and correctly displays the new vote score after clicking. @done(2017-10-13 11:34)
   ✔ List pages (root or category) include a mechanism for sorting by date or by score (at a minimum) and the sort works properly. @done(2017-10-13 11:34)
   ✔ Most application state is managed by the Redux store. State-based props are mapped from the store rather than stored as component state. @done(2017-10-12 17:30)

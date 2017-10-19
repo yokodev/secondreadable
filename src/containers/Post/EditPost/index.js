@@ -13,8 +13,6 @@ class EditPost extends Component{
   }
 
    onEditPost = (data,other) => {
-    //  console.log('edit  Post with this props en Editpost: ',this.props);
-    //  console.log('data from form: ',data);
      let {id, state:{body,title}}=data
      this.setState({loading:true})
      this.props.dispatch(editPost({id,title,body}, ()=>{
@@ -27,10 +25,7 @@ class EditPost extends Component{
   onCancel = (e) =>{
     this.props.history.push('/')
   }
-  // loadPostData = ()=>{
-  //   console.log('edit  Post with this props en Editpost: ',this.props);
-  //   console.log(`loading data for form `);
-  // }
+
 
   render(){
     let {location:{state:{postToEdit}},categories}=this.props

@@ -94,14 +94,12 @@ export function deletePost(postId,callback) {
   return function(dispatch){
     return API.deletePost(postId)
     .then(post=>{
-      // console.log(`Request succedeed`,post)
 //TODO this is how I cheat the reducer and save a action type
 //SO I have to send getPosts a callback
-      // dispatch(getPosts(()=>console.log('returning from delete callback in get posts')))
-      dispatch(getPosts())
+// dispatch(getPosts())
+      dispatch(allPostsWComments)
       callback()
     })
-        // return dispatch(getPosts())
   }
 }
 
