@@ -1,11 +1,14 @@
-import React from 'react'
-import {Button, Image} from 'semantic-ui-react'
-import image from 'assets/images/Page-not-found.png'
+import React from 'react';
+import { Button, Image } from 'semantic-ui-react';
+import image from 'assets/images/Page-not-found.png';
 
-const PageNotFound = (props)=>
-<div>
-  <Button primary negative onClick={()=>props.history.push('/')}>Go Back</Button>
-<Image as='a'  src={image} fluid />
-</div>
+const PageNotFound = props => (
+  <div>
+    <Button primary negative onClick={() => props.history.push('/')}>
+      Go Back
+    </Button>
+    <Image as="a" src={image} fluid />
+  </div>
+);
 
- export default PageNotFound
+export default PageNotFound;

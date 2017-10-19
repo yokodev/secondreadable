@@ -36,11 +36,3 @@ export const getPostDetail = (postId, callback)=>
       }
     )
   }
-
-  // export const getPostDetailWComments =(postId)=>
-  //   (dispatch,getState)=>{
-  //     return dispatch(getPostDetail(postId))
-  //       .then(
-  //         let detail = getState().postDetail
-  //       )
-  //   }

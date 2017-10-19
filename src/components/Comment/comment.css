@@ -1,16 +1,16 @@
-.single-comment{
+.single-comment {
   display: flex;
   justify-content: center;
 }
 
-.the-comment{
-width: 80%;
+.the-comment {
+  width: 80%;
 }
-.minirater{
+.minirater {
   width: 20%;
 }
 
-.ctoolbar{
+.ctoolbar {
   align-self: flex-end;
   /*width: 30%;*/
 }

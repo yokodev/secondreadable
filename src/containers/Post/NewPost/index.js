@@ -24,7 +24,6 @@ class AddPost extends Component {
   }
 
   render() {
-    // console.log(`props en new form`,this.props);
     return (
       <div>
         <Dimmer active={this.state.loading}>

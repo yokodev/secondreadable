@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Image } from 'semantic-ui-react';
 import image from 'assets/images/reading-snoo.png';
 import './Header.css';
-import { Link, NavLink, withRouter  } from 'react-router-dom';
+import { Link, NavLink, withRouter } from 'react-router-dom';
 import * as actions from 'containers/Posts/actions';
 
 class Header extends Component {
@@ -14,23 +14,28 @@ class Header extends Component {
   render() {
     const { categories } = this.props;
     return (
-      <header className='mainheader'>
-        <div className='header-image'>
-          <Image src={image} size='tiny' />
+      <header className="mainheader">
+        <div className="header-image">
+          <Image src={image} size="tiny" />
         </div>
-        <div className='header-title'>
-          <Link className='header-title-link' to="/"
+        <div className="header-title">
+          <Link
+            className="header-title-link"
+            to="/"
             onClick={//FIXME THIS NEEDS TO GET THE ids of all the posts
-              ()=>{this.props.dispatch(actions.allPostsWComments())}
-            }
-            >
+            () => {
+              this.props.dispatch(actions.allPostsWComments());
+            }}
+          >
             Readable
           </Link>
         </div>
         <div className="header-menu">
           <div className="ui pointing secondary menu">
             {categories.map(cat => (
-              <NavLink  key={cat.name} to={`/${cat.path}`}
+              <NavLink
+                key={cat.name}
+                to={`/${cat.path}`}
                 className="header-menu-item"
                 activeClassName="header-menu-item-active"
                 onClick={() => this.handleLinkCliked(cat.name)}
@@ -45,4 +50,4 @@ class Header extends Component {
   }
 }
 
-export default withRouter(connect()(Header))
+export default withRouter(connect()(Header));

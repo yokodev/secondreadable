@@ -1,67 +1,56 @@
-.post{
+.post {
   min-width: 630px;
   display: flex;
 }
-.post-rater{
-  /*padding-right: 10px;*/
-  /*width: 70px;*/
-  /*align-self: center;*/
+.post-rater {
   height: 100%;
 }
-.post-image{
+.post-image {
   width: 200px;
   padding-left: 10px;
   align-self: center;
   margin-left: 8px;
-
 }
-.post-image .image{
-  /*background-color: lightgrey;*/
+.post-image .image {
 }
 .post-content {
-  /*background-color: rgb(139, 222, 1);*/
   height: 100%;
   padding: 12px 0 0 20px;
   width: 100%;
   align-self: center;
-  /*align-self:center;*/
-  /*display: flex;*/
-  /*flex-direction:column;*/
 }
 
-.post-content .post-title{
+.post-content .post-title {
   color: #0000ff;
   font-size: 20px;
   text-transform: uppercase;
   font-weight: bolder;
 }
-.post-body{
-  padding: 0px 10px 15px 0px
+.post-body {
+  padding: 0px 10px 15px 0px;
 }
 
-.post-submitted{
+.post-submitted {
   text-transform: capitalize;
   color: grey;
-  margin-top: -8px
-
+  margin-top: -8px;
 }
 
-.post-submitted span{
-  color:#4d5763;
+.post-submitted span {
+  color: #4d5763;
   font-weight: bolder;
 }
 
-
-.post-actions{
+.post-actions {
   display: flex;
   justify-content: flex-end;
 }
-.post-actions span{
+.post-actions span {
 }
 
-.post-actions .post-actions-popup{
+.post-actions .post-actions-popup {
   background-color: white;
-  color: white
+  color: white;
 }
 
 .postContent {

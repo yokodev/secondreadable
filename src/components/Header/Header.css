@@ -10,40 +10,39 @@
   display: grid;
   grid-template-columns: 20px 55px 1fr 1fr;
   grid-template-rows: 70px 1fr;
-  grid-template-areas: ". . . ."
-                      ". image title menu";
+  grid-template-areas: '. . . .' '. image title menu';
   grid-column-gap: 5px;
-
 }
 
-.header-image{
+.header-image {
   grid-area: image;
   align-self: center;
 }
-.header-title{
+.header-title {
   /*background-color: red;*/
   grid-area: title;
   height: auto;
   width: auto;
   align-self: center;
 }
-.header-title a:link,a:visited{
+.header-title a:link,
+a:visited {
   font-size: 40px;
   margin-left: 10px;
   /*text-decoration: none;*/
   color: white;
 }
-.header-title a:hover, a:active {
-    /*background-color: red;*/
-    color: white;
+.header-title a:hover,
+a:active {
+  /*background-color: red;*/
+  color: white;
 }
-
 
 .header-menu {
   grid-area: menu;
   height: 50px;
   align-self: end;
-  justify-self:end;
+  justify-self: end;
 }
 .header-menu-item {
   padding: 12px 16px;
@@ -51,15 +50,13 @@
   font-weight: 400;
   /*color: white;*/
 }
- .header-menu-item-active {
-   /*color: white;
+.header-menu-item-active {
+  /*color: white;
    font-weight: bolder;*/
-   border-bottom-style: solid;
-   border-bottom-color: white;
-
- }
-.header-menu-item:hover{
+  border-bottom-style: solid;
+  border-bottom-color: white;
+}
+.header-menu-item:hover {
   color: white;
   font-weight: bolder;
-
 }

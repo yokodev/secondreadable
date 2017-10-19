@@ -1,18 +1,17 @@
-import React, {Component} from 'react'
-import {Button,Menu, Dropdown } from 'semantic-ui-react'
+import React, { Component } from 'react';
+import { Button, Menu, Dropdown } from 'semantic-ui-react';
 class MyMenu extends Component {
+  handleOpen = data => {
+    this.props.handleOpen();
+  };
+  handleVoteClick = (data, { value }) => {
+    this.props.handleVote(value);
+  };
 
-  handleOpen = (data)=>{
-    this.props.handleOpen()
-  }
-  handleVoteClick = (data,{value})=>{
-    this.props.handleVote(value)
-  }
-
-  render(){
-    return(
+  render() {
+    return (
       <Menu attached="top">
-        <Menu.Item >
+        <Menu.Item>
           <Button onClick={this.handleOpen}>{this.props.addTitle}</Button>
         </Menu.Item>
         <Menu.Menu position="right">
@@ -28,8 +27,8 @@ class MyMenu extends Component {
           </Dropdown>
         </Menu.Menu>
       </Menu>
-    )
+    );
   }
 }
 
-export default MyMenu
+export default MyMenu;

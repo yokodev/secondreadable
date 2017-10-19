@@ -1,5 +1,4 @@
 import { createSelector } from 'reselect'
-// import sortBy from 'sort-by'
 import _ from 'lodash'
 // create select function to pickup the piece of comments we want
 
