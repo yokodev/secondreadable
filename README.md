@@ -15,7 +15,7 @@ First you need to get a copy of the App into your machine
 clone it, cd into the directory, install dependencies via YARN or NPM and start it up
 
 ```
-git clone  https://github.com/yokodev/secondreadable readable
+git clone  https://github.com/yokodev/secondreadable.git readable
 cd readable/
 npm i
 npm start

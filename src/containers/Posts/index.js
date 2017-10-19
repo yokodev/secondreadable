@@ -38,7 +38,7 @@ class Posts extends Component {
   handleClose = () => this.setState({ modalOpen: false })
 
   render() {
-    const { posts, categories, history } = this.props
+    const { posts, history } = this.props
     return (
       <Segment>
         <Menu attached="top">
