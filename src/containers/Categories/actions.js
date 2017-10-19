@@ -11,7 +11,6 @@ export function getCategories() {
 }
 
 export function receiveCategories(categories){
-  console.log(categories);
   return {
     type: RECEIVE_CATEGORIES,
     categories

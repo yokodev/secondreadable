@@ -4,7 +4,7 @@ import { Form, Button } from 'semantic-ui-react'
 class CommentForm extends Component {
 
   componentDidMount(){
-   console.log(`this props componentDidMount`,this.props)
+  //  console.log(`this props componentDidMount`,this.props)
    let {payload}=this.props
    payload && this.setState({body:payload.body, payload })
   }
@@ -12,11 +12,7 @@ class CommentForm extends Component {
   state = {edit:false, body:''}
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
   handleSubmit = () => {
-    console.log('props en handleSubmit en  GralForm component: ',this.props);
-    // this.props.edit
-    // ? this.props.onSubmit({state:this.state, id:this.props.edit.id})
-    // : this.props.onSubmit(this.state)
-    console.log('el stado',this.state);
+    // console.log('el stado',this.state);
     this.props.onSubmit(this.state)
     this.setState({ body:''})
  }

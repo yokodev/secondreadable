@@ -1,8 +1,7 @@
 import React from 'react';
-import { Icon, Segment } from 'semantic-ui-react';
+import { Icon } from 'semantic-ui-react';
 import './rater.css';
 const RaterMini = ({ voteScore, rateUp, rateDown }) => {
-  console.log('voteScore ',voteScore);
   return (
     <div className="miniwrapper">
       <div className="up rmitem">

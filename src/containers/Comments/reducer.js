@@ -45,6 +45,7 @@ function comments(state = initialState, action ){
     case Action.DELETE_COMMENT:
       return { ...state, loading: true}
     case Action.DELETE_COMMENT_SUCCESS:
+      console.log('action en delete ',action);
       return {...state, byId:omit(state.byId,action.response.id)  }
     case Action.DELETE_COMMENT_FAILURE:
       return { ...state, loading: false, error:action.error}

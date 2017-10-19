@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './post.css';
-import { getPosts, setOrderBy, getPostsByCat} from './actions';
+import {  setOrderBy, allPostsWCommentsNCat, allPostsWComments } from './actions';
 import SinglePost from './PostItem';
 import {orderByPosts } from './selectors'
-import NewPostForm from 'components/Form'
-import {Segment, Menu,Dropdown, Button, Modal } from 'semantic-ui-react'
-// import {  withRouter  } from 'react-router-dom';
+import {Segment, Menu, Dropdown, Button } from 'semantic-ui-react'
 
 class Posts extends Component {
 
@@ -15,33 +13,36 @@ class Posts extends Component {
   }
 
   componentDidMount() {
-    const {match:{params:{cat}}, getPosts, getPostsByCat }=this.props
-    cat?getPostsByCat(cat):getPosts()
+    const {match:{params:{cat}},allPostsWComments, allPostsWCommentsNCat  }=this.props
+    cat
+    ? allPostsWCommentsNCat(cat).then(data=>{console.log('datawithcat', data );})
+    // ? getPostsByCat(cat).then(data=>{allPostsWComments()})
+    : allPostsWComments().then(data=>{console.log('myData corio, ',data);})
+    // : getPosts().then(data=>{console.log('myData corio, ',data);})
+    // : getPosts().then(data=>allPostsWComments())
+  }
+  componentDidUpdate(prevProps) {
+    const {match:{params:{cat},path}, allPostsWCommentsNCat} =  this.props
+    prevProps.match.params.cat !== cat && path !== "/" &&
+    allPostsWCommentsNCat(cat).then(data=>{console.log('datawithcat en CDU', data );})
 
+    console.log('prevProps ',prevProps);
+    console.log('props ',this.props);
   }
 
-  handleVoteClick = (e, { value }) => {
-    this.props.setOrderBy(value)
-  }
-
-  handleOpen = () => {
-    // this.setState({ modalOpen: true })
-    console.log(this.props);
-    this.props.history.push('/newPost')
-  }
+  handleVoteClick = (e, { value }) => { this.props.setOrderBy(value) }
+  handleOpen = () => {this.props.history.push('/newPost')}
   handleClose = () => this.setState({ modalOpen: false })
-  handleNewPost = (values)=>{
 
-  }
+
   render() {
     const {posts, categories,history } = this.props;
-    console.log('las cats ',categories);
+    console.log('Rerender en Posts, cats= ',categories);
     return (
       <Segment >
         <Menu attached="top">
           <Menu.Item >
             <Button onClick={this.handleOpen}>Add Post</Button>
-            {/* <Button onClick={this.handleOpen}>Add Post</Button> */}
           </Menu.Item>
           <Menu.Menu position="right">
             <Dropdown item text="Sort By" icon="sort">
@@ -59,33 +60,18 @@ class Posts extends Component {
         <Segment  color="grey" attached className="postList">
           {posts.map(post => <SinglePost key={post.id} post={post} history={history} />)}
         </Segment>
-        {/* <Modal trigger={<Button onClick={this.handleOpen}>Add Post</Button>} scrolling */}
-        <Modal  scrolling
-          open={this.state.modalOpen}
-          onClose={this.handleClose}//TODO need to handle de onclose so that when a post is submitted you close this
-          closeOnEscape={false}
-          closeOnRootNodeClick={false}
-        >
-        <Modal.Header>Add Post</Modal.Header>
-        <Modal.Content >
-          <NewPostForm categories={categories} onSubmit={this.handleNewPost} onCancel={this.handleClose} />
-        </Modal.Content>
-      </Modal>
       </Segment>
 
     )
   }
 }
-// function mapStateToProps({
-//   posts: { byId: pById, allIds: allPIds, orderBy = 'voteScore' },
-// }) {
+
 function mapStateToProps(state,ownProps) {
-  // console.log('ownProps:', ownProps);
-  // let Posts = postsArrayFromObject(state)
   return {
-    // posts: Utils.itemsSortedBy(pById, allPIds, orderBy)
-    posts: orderByPosts(state)
+    posts: orderByPosts(state),
+    allIds:state.posts.allIds
   }
 }
 
-export default connect(mapStateToProps, {getPostsByCat, getPosts, setOrderBy})(Posts);
+export default connect(mapStateToProps,
+  {allPostsWCommentsNCat, setOrderBy, allPostsWComments})(Posts);

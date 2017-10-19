@@ -28,6 +28,9 @@ export const DELETE_COMMENT_SUCCESS = 'readable/Comments/DELETE_COMMENT_SUCCESS'
 export const DELETE_COMMENT_FAILURE = 'readable/Comments/DELETE_COMMENT_FAILURE'
 
 
+export const SET_COMMENT_TO_DETAIL = 'readable/Comments/SET_COMMENT_TO_DETAIL'
+export const DELETE_COMMENT_TO_DETAIL = 'readable/Comments/DELETE_COMMENT_TO_DETAIL'
+export const ADD_COMMENT_TO_DETAIL = 'readable/Comments/ADD_COMMENT_TO_DETAIL'
 
 
 
@@ -64,6 +67,8 @@ export const commentsByPost = (postId)=>dispatch=>{
     .then(
       response =>{
         dispatch(commentsByIdSuccess(response))
+        dispatch({type:SET_COMMENT_TO_DETAIL ,
+          comments:response && response.length>0? response.length: 0 })
         dispatch(setMessage(response))
       },
       error=>{
@@ -100,7 +105,7 @@ export const addNewComment = (postId, formValues)=>
     .then(
       response =>{
         dispatch({type:ADD_COMMENT_SUCCESS, response})
-        // dispatch(commentsByPost(postId))
+        dispatch({type:ADD_COMMENT_TO_DETAIL, response})
       },
       error =>{
         dispatch({type:ADD_COMMENT_FAILURE, error})
@@ -118,6 +123,7 @@ export const deleteComment = (commentId)=>
     .then(
       response =>{
         dispatch({type:DELETE_COMMENT_SUCCESS, response})
+        dispatch({type:DELETE_COMMENT_TO_DETAIL, response})
       },
       error =>{
         dispatch({type:DELETE_COMMENT_FAILURE, error})

@@ -19,49 +19,38 @@ class PostDetail extends Component {
       ? this.props.history.push('/notfound')
       : this.props.dispatch(commentsByPost(this.props.match.params.id))
     }))
-    //TODO MAKE VALIDATION THAT IF DETAIL IS EMPTY NOT FOLLOW
+    //TODO MAKE VALIDATION THAT IF  post DETAIL IS EMPTY NOT FOLLOW with flow
   }
 
   rateUp = ()=>{
     let { postDetail:{id}}=this.props
-    // console.log('rateUP enPostItem con postID: ',id);
     this.props.dispatch(setPostRate(id,'upVote'))
   }
   rateDown = ()=>{
     let { postDetail:{id}}=this.props
-    // console.log('rateDOWN enPostItem con postID: ',this.props);
     this.props.dispatch(setPostRate(id,'downVote'))
   }
 
   deletePost = id =>{
     let {match:{params:{cat}}} = this.props
     this.setState({loading:true})
-    this.props.dispatch(deletePost(id,()=>{
-    //   // console.log('regres0 del callback ',id);
-    //   this.setState({loading:false})
-      this.props.history.push(`/${cat}`)
-    }))
-
-    console.log(this.props)
-    console.log('editing this id ',id);
+    this.props.dispatch(deletePost(id,
+      ()=>{ this.props.history.push(`/${cat}`) }))
   }
-  editPost = id=>{
 
+  editPost = id=>{
     this.props.history.push(`/editPost/${id}`,{postToEdit:this.props.postDetail})
-    // console.log(this.props)
-    // console.log('editing this id ',id);
   }
 
   render() {
-    const { postDetail, comments } = this.props
-    // const { id, title, timestamp, author, voteScore, body } = postDetail
+    const { postDetail} = this.props
     let postToShow
     if (postDetail) {
-      let { id, title, timestamp, author, voteScore, body, category } = postDetail
+      let { id, title, timestamp, author, voteScore, body, comments } = postDetail
       postToShow =
       <Segment>
         <Segment>
-          <Label as='a' color='red' ribbon="right"><Icon name="comments" />805 Comments</Label>
+          <Label as='a' color='red' ribbon="right"><Icon name="comments" />{comments} Comments</Label>
           <div className="post">
             <div className="post-rater">
               <Rater voteScore={voteScore} rateUp={this.rateUp} rateDown={this.rateDown} />
@@ -83,7 +72,6 @@ class PostDetail extends Component {
           </div>
         </Segment>
         <Segment>
-          {/* <Comments comments={comments} id={id} /> */}
           <Comments  id={id} />
         </Segment>
       </Segment>
@@ -104,7 +92,4 @@ const mapStateToProps =({postDetail})=> ({
   postDetail
 })
 
-   export default connect(mapStateToProps)(PostDetail)
-// export default connect(mapStateToProps, { getPostDetail})(PostDetail)
-// export default connect(mapStateToProps, {setPostRate, commentsByPost, getPostDetail})(PostDetail)
-// export default PostDetail
+export default connect(mapStateToProps)(PostDetail)

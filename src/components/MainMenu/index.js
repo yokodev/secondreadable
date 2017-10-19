@@ -3,11 +3,9 @@ import {Button,Menu, Dropdown } from 'semantic-ui-react'
 class MyMenu extends Component {
 
   handleOpen = (data)=>{
-    console.log('from AddButton',data);
     this.props.handleOpen()
   }
   handleVoteClick = (data,{value})=>{
-    // console.log('from handleVoteClick ',data);
     this.props.handleVote(value)
   }
 

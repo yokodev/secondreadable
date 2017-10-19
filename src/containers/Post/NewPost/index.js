@@ -11,8 +11,6 @@ class AddPost extends Component {
   }
 
   createNewPost = data => {
-    console.log('creating new Post with this props en createnewpost: ', this.props)
-    console.log('data from form: ', data)
     this.setState({ loading: true })
     this.props.dispatch(
       createNewPost(data, () => {
@@ -29,7 +27,7 @@ class AddPost extends Component {
     // console.log(`props en new form`,this.props);
     return (
       <div>
-        <Dimmer active={false}>
+        <Dimmer active={this.state.loading}>
           <Loader />
         </Dimmer>
         <Form

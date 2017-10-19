@@ -1,6 +1,5 @@
 import React from 'react'
 import {Button, Image} from 'semantic-ui-react'
-import {Link } from 'react-router-dom'
 import image from 'assets/images/Page-not-found.png'
 
 const PageNotFound = (props)=>

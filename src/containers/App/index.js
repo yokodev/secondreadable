@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
-// import './app.css';
 import { connect } from 'react-redux'
 import { getCategories } from 'containers/Categories/actions';
 import CatToArraySelector from 'containers/Categories/selectors'
@@ -44,7 +43,6 @@ class App extends Component {
   }
 }
 
-// function mapStateToProps({ categories: { byId: cById, allIds: allCIds } = []}) {
 
 function mapStateToProps(state) {
   return {
@@ -52,11 +50,4 @@ function mapStateToProps(state) {
   }
 }
 
-// const mapDispatchToProps = dispatch => ({
-//   getPosts: () => dispatch(getPosts()),
-//   getCategories: () => dispatch(getCategories())
-// });
-
-// export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
-// export default (connect(mapStateToProps, mapDispatchToProps)(App))
 export default withRouter(connect(mapStateToProps,{getCategories})(App))
