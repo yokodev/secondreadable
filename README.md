@@ -21,6 +21,13 @@ npm i
 npm start
 ```
 
+This project uses the default version of the server given by Udacity...
+```
+git clone https://github.com/udacity/reactnd-project-readable-starter.git server
+cd  server/api-server
+node server
+```
+
 That's it
 
 

@@ -4,7 +4,7 @@ import * as Utils from 'utils';
 
 class GralForm extends Component {
   componentDidMount() {
-    let { edit } = this.props;
+    const { edit } = this.props;
     edit &&
       this.setState({
         edit: true,
@@ -14,11 +14,15 @@ class GralForm extends Component {
       });
   }
 
-  state = { edit: false, title: '' };
+  state = { edit: false, title: '', error:false };
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value });
 
   handleSubmit = () => {
+    if(this.state.category === undefined){
+      this.setState({error:true})
+      return
+    }
     this.props.edit
       ? this.props.onSubmit({ state: this.state, id: this.props.edit.id })
       : this.props.onSubmit(this.state);
@@ -77,8 +81,9 @@ class GralForm extends Component {
               value={category}
               disabled={edit}
               options={catOptions}
-              placeholder="Categories"
+              placeholder="Category"
               required
+              error= {this.state.error }
               onChange={this.handleChange}
             />
             <Button type="submit">Submit</Button>
