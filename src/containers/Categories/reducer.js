@@ -2,10 +2,8 @@ import * as Action from './actions'
 import mapkeys from 'lodash.mapkeys'
 
 function createNewCategories(newCategories) {
-  let byId = {},
-    allIds = []
-  byId = mapkeys(newCategories.categories, 'path')
-  allIds = Object.keys(byId)
+  const byId = mapkeys(newCategories.categories, 'path')
+  const allIds = Object.keys(byId)
   return { byId, allIds }
 }
 

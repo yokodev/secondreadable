@@ -16,7 +16,6 @@ import MyMenu from 'components/MainMenu'
 import MyModal from 'components/MyModal'
 
 class Comments extends Component {
-  componentDidMount() {}
 
   handleNewComment = data => {
     this.props.dispatch(addNewComment(this.props.id, data.body))
@@ -31,8 +30,6 @@ class Comments extends Component {
   }
 
   editComment = id => {
-    //FIX NEED TO COME HERE WHENEVER I'm done with the edit
-
     this.props.dispatch(
       getThisComment(id, data => {
         this.setState({ editPayload: data })
@@ -95,9 +92,9 @@ class Comments extends Component {
             handleOpen={this.changingToAddMode}
           />
           <Segment attached>
-            {comments.map((comment, i) => (
+            {comments.map((comment) => (
               <MyComment
-                key={i}
+                key={comment.id}
                 comment={comment}
                 ratecUp={this.ratecUp}
                 ratecDown={this.ratecDown}

@@ -38,7 +38,10 @@ export function prepareNewPost(formValues) {
   formValues['id'] = generateUid();
   formValues['timestamp'] = Date.now();
   formValues['voteScore'] = 1;
-  formValues['author'] = faker.name.findName();
+  formValues['author'] = 
+    formValues.author 
+    ? formValues.author
+    : faker.name.findName();
   // formValues['deleted']= false;
   return formValues;
 }

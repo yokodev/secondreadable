@@ -25,7 +25,7 @@ This project uses the default version of the server given by Udacity...
 ```
 git clone https://github.com/udacity/reactnd-project-readable-starter.git server
 cd  server/api-server
-node server
+node server.js
 ```
 
 That's it

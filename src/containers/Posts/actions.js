@@ -97,7 +97,7 @@ export function deletePost(postId, callback) {
       //TODO this is how I cheat the reducer and save a action type
       //SO I have to send getPosts a callback
       // dispatch(getPosts())
-      dispatch(allPostsWComments)
+      dispatch(allPostsWComments())
       callback()
     })
   }

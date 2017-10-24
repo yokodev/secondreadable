@@ -3,10 +3,8 @@ import omit from 'lodash.omit'
 import mapkeys from 'lodash.mapkeys'
 
 function createNewPosts(newPosts) {
-  let byId = {},
-    allIds = []
-  byId = mapkeys(newPosts, 'id')
-  allIds = Object.keys(byId)
+  const byId = mapkeys(newPosts, 'id')
+  const allIds = Object.keys(byId)
   return { byId, allIds }
 }
 
