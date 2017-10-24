@@ -7,11 +7,11 @@ export function createNewPost(newPost, callback) {
   return function(dispatch) {
     API.createNewPost(newPost).then(
       data => {
-        console.log(`Request succedeed`, data)
+        // console.log(`Request succedeed`, data)
         callback()
       },
       error => {
-        console.log(`Request failed`, error)
+        // console.log(`Request failed`, error)
         throw error
       }
     )
