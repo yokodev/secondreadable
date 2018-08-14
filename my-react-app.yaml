@@ -1,0 +1,24 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: my-react-app
+  name: my-react-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: my-react-app
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: my-react-app
+    spec:
+      containers:
+      - image: jamaya/myreactapp:v0
+        name: my-react-app
+        resources: {}
+status: {}
